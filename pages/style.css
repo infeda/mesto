@@ -1,0 +1,166 @@
+*{
+  outline-width: 1px;
+  outline-style: solid;
+  outline-color: red;
+} 
+
+.root {
+  width: 100%;
+  background-color: #000000;
+}
+
+.page {
+  max-width: 1280px;
+  min-width: 320px;
+  width: 100%;
+  font-family: 'Inter', Arial, sans-serif;
+  color: #FFFFFF;
+  margin: 0 auto;
+  /* box-sizing: border-box; */
+}
+
+.header {
+  width: 70%;
+  min-height: 74px;
+  margin: 45px auto 0;
+  border-bottom: 1px solid #545454;
+}
+
+.header__logo {
+  min-height: 45%;
+  object-fit: contain;
+}
+
+.content {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.profile {
+  width: 100%;
+  min-height: 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 36px;
+  padding: 0;
+}
+
+.profile-content {
+  display: flex;
+  justify-content: start;
+}
+
+.profile__avatar {
+  border-radius: 50%;
+  width: 120px;
+  object-fit: contain;
+  object-position: center;
+  margin: 0 30px 0 0;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile__header {
+  padding: 0;
+  margin: 0 0 16px;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 42px;
+  line-height: 56px;
+}
+
+.profile__subheader {
+  padding: 0;
+  margin: 0;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.edit-button {
+  object-position: 50% 50%;
+  object-fit: none;
+  border: 1px solid #FFFFFF;
+  margin-left: 16px;
+  width: 24px;
+  height: 24px;
+}
+
+.add-button {
+  width: 150px;
+  height: 50px;
+  border: 1px solid #FFFFFF;
+  object-position: 50% 50%;
+  object-fit: none;
+  box-sizing: border-box;
+}
+
+.elements {
+  width: 100%;
+  margin: 27px auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, max-content));
+  gap: 20px 18px;
+}
+
+.card {
+  width: 100%;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #000000;
+  overflow: hidden;
+}
+
+.card__image {
+  width: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.card__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px 21px 31px;
+}
+
+.card__heading {
+  padding: 0;
+  margin: 0;
+  font-weight: 900;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 29px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card__like {
+  width: 21px;
+  height: 18px;
+  object-fit: contain;
+  position: center;
+}
+
+.footer {
+  min-height: 78px;
+  width: 70%;
+  margin: 66px auto 0;
+}
+
+.footer__copyright {
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 22px;
+  padding: 0;
+  margin: 0;
+  color: #545454;
+}
