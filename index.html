@@ -23,6 +23,21 @@
               <img class="edit-button" src="./images/edit-button__pen.svg" alt="кнопка-редактирования"></h1>
             <p class="profile__subheader">Исследователь океана</p>
           </div>
+          <div class="popup">
+            <div class="popup-container">
+              <img class="popup-container__close-icon" src="./images/Close Icon.svg" alt="закрыть">
+              <h2 class="popup-container__heading">Редактировать профиль</h2>
+              <form class="form">
+                  <fieldset class="form__input-container form__input-container_ctrl_text">
+                    <input type="name" name="name" id="name" class="form__item form__item_el_name"
+                      placeholder="Жак-Ив Кусто" required>
+                    <input type="text" name="text" id="text" class="form__item form__item_el_text"
+                      placeholder="Исследователь океана" required>
+                  </fieldset>
+                  <button type="submit" class="form__submit-button">Сохранить</button>
+              </form>
+            </div>
+          </div>
 
         </div>
         <img class="add-button" src="./images/add-button.svg" alt="кнопка добавить">
@@ -78,6 +93,7 @@
       </p>
     </footer>
   </div>
+  <script src="./script.js"></script>
 </body>
 
 </html>
