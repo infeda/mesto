@@ -122,6 +122,12 @@
   justify-content: center;
 }
 
+.profile-info__first-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+}
+
 .profile__header {
   padding: 0;
   margin: 0 0 16px;
@@ -157,7 +163,6 @@
 }
 
 .edit-button {
-  object-position: 50% 50%;
   object-fit: none;
   border: 1px solid #FFFFFF;
   margin-left: 16px;
@@ -325,6 +330,7 @@
   border-radius: 10px;
   padding: 36px;
   box-sizing: border-box;
+  position: relative;
 }
 
 @media (max-width: 535px) {
@@ -336,11 +342,11 @@
 }
 
 .popup-container__close-icon {
-  position: fixed;
+  position: absolute;
   width: 47px;
   height: 47px;
-  top: calc(50% - (330px / 2) - 40px);
-  left: calc(50% + (430px / 2) - 5px);
+  top: -47px;
+  right: -47px;
   transition: 0.5s linear opacity;
 }
 
@@ -355,8 +361,7 @@
   .popup-container__close-icon {
     width: 30px;
     height: 30px;
-    left: calc(100% - 19px - 26px);
-    top: calc(50% - (322px / 2) - 50px);
+    right: 0px;
   }
 }
 
