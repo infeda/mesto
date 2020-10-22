@@ -1,0 +1,17 @@
+.profile__subheader {
+  padding: 0;
+  margin: 0;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+@media (max-width: 730px) {
+  .profile__subheader {
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: 14px;
+    width: 100%;
+  }
+}

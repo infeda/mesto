@@ -1,0 +1,23 @@
+.popup-container__close-icon {
+  position: absolute;
+  width: 47px;
+  height: 47px;
+  top: -47px;
+  right: -47px;
+  transition: 0.5s linear opacity;
+}
+
+@media (min-width: 1024px) {
+  .popup-container__close-icon:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 535px) {
+  .popup-container__close-icon {
+    width: 30px;
+    height: 30px;
+    right: 0px;
+  }
+}

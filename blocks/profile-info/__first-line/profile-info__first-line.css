@@ -1,0 +1,5 @@
+.profile-info__first-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+}

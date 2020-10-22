@@ -1,0 +1,18 @@
+.content {
+  width: 70%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1079px) {
+  .content {
+    width: 90%;
+  }
+}
+
+@media (max-width: 730px) {
+  .content {
+    width: 100%;
+    padding: 0 19px;
+  }
+}

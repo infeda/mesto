@@ -1,0 +1,10 @@
+.header__logo {
+  min-height: 45%;
+  object-fit: contain;
+}
+
+@media (max-width: 730px) {
+  .header__logo {
+    margin-left: 27px;
+  }
+}

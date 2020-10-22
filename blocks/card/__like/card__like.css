@@ -1,0 +1,6 @@
+.card__like {
+  width: 21px;
+  height: 18px;
+  object-fit: contain;
+  object-position: center;
+}
