@@ -36,8 +36,8 @@ function formSubmitHandler (evt) {
     // Воспользуйтесь инструментом .querySelector()
 
     // Получите значение полей из свойства value
-    const nameValue = nameInput.value;
-    const jobValue = jobInput.value;
+    let nameValue = nameInput.value;
+    let jobValue = jobInput.value;
 
     // Выберите элементы, куда должны быть вставлены значения полей
     let namePlace = document.querySelector('.profile__header');
