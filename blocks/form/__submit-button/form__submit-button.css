@@ -13,7 +13,7 @@
   transition: 0.5s linear opacity;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .form__submit-button:hover {
     opacity: 0.8;
     cursor: pointer;
