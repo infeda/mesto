@@ -1,8 +1,11 @@
 .profile {
   width: 100%;
-  min-height: 120px;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-areas:
+  "avatar profile-info add-button";
+  grid-template-columns: 120px 1fr 150px;
+  grid-template-rows: 1fr;
+  column-gap: 12px;
   align-items: center;
   margin-top: 36px;
   padding: 0;
@@ -10,8 +13,13 @@
 
 @media (max-width: 730px) {
   .profile {
-    display: inline-block;
-    text-align: center;
-    margin-top: 0;
+    grid-template-areas:
+    "avatar"
+    "profile-info"
+    "add-button";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    column-gap: 0;
+    justify-items: center;
   }
 }

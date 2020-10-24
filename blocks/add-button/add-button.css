@@ -1,5 +1,6 @@
 .add-button {
-  width: 150px;
+  grid-area: add-button;
+  width: 100%;
   height: 50px;
   border: 2px solid #FFFFFF;
   border-radius: 2px;

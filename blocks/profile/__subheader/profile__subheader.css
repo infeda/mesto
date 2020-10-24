@@ -11,7 +11,7 @@
   .profile__subheader {
     font-size: 14px;
     line-height: 17px;
-    margin-top: 14px;
-    width: 100%;
+    /* margin-top: 14px; */
+    text-align: center;
   }
 }

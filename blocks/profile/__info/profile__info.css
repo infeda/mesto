@@ -1,5 +1,7 @@
-.profile-info {
+.profile__info {
+  grid-area: profile-info;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0;
 }

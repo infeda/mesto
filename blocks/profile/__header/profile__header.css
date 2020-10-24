@@ -1,6 +1,6 @@
 .profile__header {
   padding: 0;
-  margin: 0 0 16px;
+  margin: 0;
   font-weight: 500;
   font-style: normal;
   font-size: 42px;
@@ -9,7 +9,7 @@
 
 @media (max-width: 730px) {
   .profile__header {
-    margin: 10px auto 0;
     font-size: 27px;
+    margin-top: 10px;
   }
 }
