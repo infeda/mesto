@@ -1,4 +1,4 @@
-.edit-button {
+.profile__edit-image {
   object-fit: none;
   border: 1px solid #FFFFFF;
   margin-left: 15px;
@@ -8,14 +8,14 @@
 }
 
 @media (min-width: 768px) {
-  .edit-button:hover {
+  .profile__edit-image:hover {
     opacity: 0.6;
     cursor: pointer;
   }
 }
 
 @media (max-width: 730px) {
-  .edit-button {
+  .profile__edit-image {
     width: 18px;
     /* height: 18px; */
     margin-left: 10px;

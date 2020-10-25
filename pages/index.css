@@ -9,9 +9,12 @@
 /* @import url('../blocks/profile-content/profile-content.css'); */
 @import url('../blocks/profile/__avatar/profile__avatar.css');
 @import url('../blocks/profile/__info/profile__info.css');
-@import url('../blocks/profile/__first-line/profile__first-line.css');
+@import url('../blocks/profile/__heading-line/profile__heading-line.css');
 @import url('../blocks/profile/__header/profile__header.css');
 @import url('../blocks/profile/__subheader/profile__subheader.css');
+@import url('../blocks/profile/__edit-image/profile__edit-image.css');
+@import url('../blocks/profile/__edit-button/profile__edit-button.css');
+/* pomeniat na edit-image i perekinut v profile */
 @import url('../blocks/edit-button/edit-button.css');
 @import url('../blocks/add-button/add-button.css');
 @import url('../blocks/elements/elements.css');
