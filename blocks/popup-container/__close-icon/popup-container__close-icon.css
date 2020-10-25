@@ -1,3 +1,9 @@
 .popup-container__close-icon {
   width: 47px;
 }
+
+@media (max-width: 535px) {
+  .popup-container__close-icon {
+    width: 37px;
+  }
+}

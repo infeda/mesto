@@ -20,7 +20,7 @@
 @media (max-width: 535px) {
   .popup-container__close-button {
     width: 37px;
-    /* height: 30px; */
+    height: 37px;
     right: 0px;
     top: -50px;
   }
