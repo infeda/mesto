@@ -8,11 +8,13 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  width: 100%;
 }
 
 @media (max-width: 730px) {
   .profile__header {
     font-size: 27px;
     margin-top: 10px;
+    max-width: 100%;
   }
 }

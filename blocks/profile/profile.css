@@ -3,7 +3,7 @@
   display: grid;
   grid-template-areas:
   "avatar profile-info add-button";
-  grid-template-columns: 120px 1fr 150px;
+  grid-template-columns: 120px calc(100% - 120px - 150px - 2 * 12px) 150px;
   grid-template-rows: 1fr;
   column-gap: 12px;
   align-items: center;
