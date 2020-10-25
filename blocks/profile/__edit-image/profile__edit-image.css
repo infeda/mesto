@@ -1,19 +1,17 @@
 .profile__edit-image {
   object-fit: none;
   border: 1px solid #FFFFFF;
-  margin-left: 15px;
   width: 24px;
   height: 24px;
-  transition: 0.5s linear opacity;
   box-sizing: border-box;
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .profile__edit-image:hover {
     opacity: 0.6;
     cursor: pointer;
   }
-}
+} */
 
 @media (max-width: 730px) {
   .profile__edit-image {
