@@ -1,11 +1,11 @@
-.form__input-container {
+.popup-container__input-container {
   padding: 0;
   border: none;
   margin: 24px 0 0 0;
 }
 
 @media (max-width: 535px) {
-  .form__input-container {
+  .popup-container_input-container {
     margin-top: 31px;
   }
 }

@@ -1,0 +1,15 @@
+.card__like-button {
+  background: initial;
+  border: none;
+  transition: 0.5s linear opacity;
+  padding: 0;
+  width: 21px;
+  height: 18px;
+}
+
+@media (min-width: 768px) {
+  .card__like-button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
+}

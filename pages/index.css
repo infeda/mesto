@@ -14,7 +14,6 @@
 @import url('../blocks/profile/__subheader/profile__subheader.css');
 @import url('../blocks/profile/__edit-image/profile__edit-image.css');
 @import url('../blocks/profile/__edit-button/profile__edit-button.css');
-/* pomeniat na edit-image i perekinut v profile */
 @import url('../blocks/edit-button/edit-button.css');
 @import url('../blocks/add-button/add-button.css');
 @import url('../blocks/elements/elements.css');
@@ -23,14 +22,16 @@
 @import url('../blocks/card/__content/card__content.css');
 @import url('../blocks/card/__heading/card__heading.css');
 @import url('../blocks/card/__like/card__like.css');
+@import url('../blocks/card/__like-button/card__like-button.css');
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');
 @import url('../blocks/popup/popup.css');
 @import url('../blocks/popup/_opened/popup_opened.css');
 @import url('../blocks/popup-container/popup-container.css');
 @import url('../blocks/popup-container/__close-icon/popup-container__close-icon.css');
+@import url('../blocks/popup-container/__close-button/popup-container__close-button.css');
 @import url('../blocks/popup-container/__heading/popup-container__heading.css');
-@import url('../blocks/form/form.css');
-@import url('../blocks/form/__input-container/form__input-container.css');
-@import url('../blocks/form/__submit-button/form__submit-button.css');
-@import url('../blocks/form/__item/form__item.css');
+@import url('../blocks/popup-container/__form/popup-container__form.css');
+@import url('../blocks/popup-container/__input-container/popup-container__input-container.css');
+@import url('../blocks/popup-container/__submit-button/popup-container__submit-button.css');
+@import url('../blocks/popup-container/__form-item/popup-container__form-item.css');

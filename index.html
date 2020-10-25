@@ -25,76 +25,92 @@
           </div>
           <p class="profile__subheader">Исследователь океана</p>
         </div>
-        <div class="popup">
-          <div class="popup-container">
-            <img class="popup-container__close-icon" src="./images/Close-Icon.svg" alt="закрыть">
-            <h2 class="popup-container__heading">Редактировать профиль</h2>
-            <form class="form">
-              <fieldset class="form__input-container form__input-container_ctrl_text">
-                <input type="text" name="name" id="name" value="Жак-Ив Кусто" class="form__item form__item_el_name"
-                  placeholder="Жак-Ив Кусто" required>
-                <input type="text" name="text" id="text" value="Исследователь океана"
-                  class="form__item form__item_el_text" placeholder="Исследователь океана" required>
-              </fieldset>
-              <button type="submit" class="form__submit-button">Сохранить</button>
-            </form>
-          </div>
-        </div>
         <img class="add-button" src="./images/add-button.svg" alt="кнопка добавить">
       </div>
       <section class="elements">
-        <div class="card">
+        <article class="card">
           <img class="card__image"
             src="https://images.unsplash.com/photo-1601816934472-609e170a9a17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80"
             alt="картинка Домбай">
           <div class="card__content">
             <h2 class="card__heading">Домбай</h2>
-            <img class="card__like" src="./images/card-like.svg" alt="лайк">
+            <button class="card__like-button" type="button" name="like-button">
+              <img class="card__like" src="./images/card-like.svg" alt="лайк">
+            </button>
           </div>
-        </div>
-        <div class="card">
+        </article>
+        <article class="card">
           <img class="card__image"
             src="https://images.unsplash.com/photo-1582570489786-8e12595cc1f5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1334&q=80"
             alt="картинка Архыз">
           <div class="card__content">
             <h2 class="card__heading">Архыз</h2>
-            <img class="card__like" src="./images/card-like.svg" alt="лайк">
+            <button class="card__like-button" type="button" name="like-button">
+              <img class="card__like" src="./images/card-like.svg" alt="лайк">
+            </button>
           </div>
-        </div>
-        <div class="card">
+        </article>
+        <article class="card">
           <img class="card__image" src="./images/dombai.jpg" alt="картинка Гора Эльбрус">
           <div class="card__content">
             <h2 class="card__heading">Гора Эльбрус</h2>
-            <img class="card__like" src="./images/card-like.svg" alt="лайк">
+            <button class="card__like-button" type="button" name="like-button">
+              <img class="card__like" src="./images/card-like.svg" alt="лайк">
+            </button>
           </div>
-        </div>
-        <div class="card">
+        </article>
+        <article class="card">
           <img class="card__image" src="./images/elbrus.jpg" alt="картинка Архыз">
           <div class="card__content">
             <h2 class="card__heading">Архыз</h2>
-            <img class="card__like" src="./images/card-like.svg" alt="лайк">
+            <button class="card__like-button" type="button" name="like-button">
+              <img class="card__like" src="./images/card-like.svg" alt="лайк">
+            </button>
           </div>
-        </div>
-        <div class="card">
+        </article>
+        <article class="card">
           <img class="card__image"
             src="https://images.unsplash.com/photo-1532602334289-349a240feadc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80"
             alt="картинка скалы Ленца">
           <div class="card__content">
             <h2 class="card__heading">Верхние скалы Ленца</h2>
-            <img class="card__like" src="./images/card-like.svg" alt="лайк">
+            <button class="card__like-button" type="button" name="like-button">
+              <img class="card__like" src="./images/card-like.svg" alt="лайк">
+            </button>
           </div>
-        </div>
-        <div class="card">
+        </article>
+        <article class="card">
           <img class="card__image"
             src="https://images.unsplash.com/photo-1572815178935-4f7ecdaaec03?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
             alt="картинка Баксан">
           <div class="card__content">
             <h2 class="card__heading">Верхний Баксан</h2>
-            <img class="card__like" src="./images/card-like.svg" alt="лайк">
+            <button class="card__like-button" type="button" name="like-button">
+              <img class="card__like" src="./images/card-like.svg" alt="лайк">
+            </button>
           </div>
-        </div>
+        </article>
       </section>
     </main>
+    <div class="popup">
+      <div class="popup-container">
+        <button class="popup-container__close-button" type="button" name="close-button">
+          <img class="popup-container__close-icon" src="./images/Close-Icon.svg" alt="закрыть">
+        </button>
+        <h2 class="popup-container__heading">Редактировать профиль</h2>
+        <form class="popup-container__form" name="popup-form" action="">
+          <fieldset class="popup-container__input-container">
+            <input type="text" name="name" id="name" value=""
+              class="popup-container__form-item popup-container__form-item_el_name" placeholder="Введите своё имя"
+              required>
+            <input type="text" name="text" id="text" value=""
+              class="popup-container__form-item popup-container__form-item_el_text"
+              placeholder="Коротко о себе" required>
+          </fieldset>
+          <button type="submit" class="popup-container__submit-button" name="submit-button">Сохранить</button>
+        </form>
+      </div>
+    </div>
     <footer class="footer">
       <p class="footer__copyright">
         &copy; 2020 Mesto Russia
