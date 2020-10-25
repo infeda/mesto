@@ -25,7 +25,9 @@
           </div>
           <p class="profile__subheader">Исследователь океана</p>
         </div>
-        <img class="add-button" src="./images/add-button.svg" alt="кнопка добавить">
+        <button class="profile__add-button" type="button" name="add-button">
+          <img class="profile__add-button-image" src="./images/add-button.svg" alt="кнопка добавить">
+        </button>
       </div>
       <section class="elements">
         <article class="card">
@@ -103,8 +105,8 @@
                 class="popup-container__form-item popup-container__form-item_el_name" placeholder="Введите своё имя"
                 required>
               <input type="text" name="text" id="text" value=""
-                class="popup-container__form-item popup-container__form-item_el_text"
-                placeholder="Коротко о себе" required>
+                class="popup-container__form-item popup-container__form-item_el_text" placeholder="Коротко о себе"
+                required>
             </fieldset>
             <button type="submit" class="popup-container__submit-button" name="submit-button">Сохранить</button>
           </form>
