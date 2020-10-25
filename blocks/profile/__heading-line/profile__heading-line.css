@@ -2,11 +2,12 @@
   display: flex;
   align-items: baseline;
   justify-content: flex-start;
-  width: 100%;
+
 }
 
 @media (max-width: 730px) {
   .profile__heading-line {
     justify-content: center;
+    max-width: 100%;
   }
 }

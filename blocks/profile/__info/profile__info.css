@@ -4,6 +4,11 @@
   flex-direction: column;
   justify-content: center;
   margin: 0;
-  max-width: 100%;
-  overflow: hidden;
+}
+
+@media (max-width: 730px) {
+  .profile__info {
+    max-width: 100%;
+    overflow: hidden;
+  }
 }

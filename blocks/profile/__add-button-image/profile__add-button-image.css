@@ -1,7 +1,7 @@
-.add-button {
-  grid-area: add-button;
+.profile__add-button-image {
+  /* grid-area: add-button; */
   width: 100%;
-  height: 50px;
+  height: 100%;
   border: 2px solid #FFFFFF;
   border-radius: 2px;
   object-position: 50% 50%;
@@ -11,14 +11,14 @@
 }
 
 @media (max-width: 730px) {
-  .add-button {
+  .profile__add-button-image {
     width: 100%;
     margin-top: 36px;
   }
 }
 
 @media (min-width: 768px) {
-  .add-button:hover {
+  .profile__add-button-image:hover {
     opacity: 0.6;
     cursor: pointer;
   }
