@@ -13,13 +13,6 @@
 @media (max-width: 730px) {
   .profile__add-button-image {
     width: 100%;
-    margin-top: 36px;
   }
 }
 
-@media (min-width: 768px) {
-  .profile__add-button-image:hover {
-    opacity: 0.6;
-    cursor: pointer;
-  }
-}
