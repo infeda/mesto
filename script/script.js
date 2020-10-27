@@ -49,9 +49,7 @@ let nameInput = document.querySelector('.popup-container__form-item_el_name');
 let jobInput = document.querySelector('.popup-container__form-item_el_text');
 let namePlace = document.querySelector('.profile__header');
 let jobPlace = document.querySelector('.profile__subheader');
-
 let popupHeading = document.querySelector('.popup-container__heading');
-
 let formElement = document.querySelector('.popup-container__form');
 
 initialCards.forEach(function (elem) {
@@ -65,28 +63,27 @@ initialCards.forEach(function (elem) {
     elements.prepend(cardElement);
 });
 
-function openPopup(obj) {
+function openPopup(obj, a, b, handler) {
   popup.classList.add('popup_opened');
 
   popupHeading.textContent = obj.heading;
   submitButton.textContent = obj.button;
+
+  nameInput.value = a;
+  jobInput.value = b;
   
   nameInput.setAttribute('placeholder', obj.nameInputPlaceholder);
   jobInput.setAttribute('placeholder', obj.linkInputPlaceholder);
+
+  formElement.addEventListener('submit', handler);
 }
 
 function closePopup() {
   popup.classList.remove('popup_opened');
-  formElement.classList.remove('popup-container__form-edit', 'popup-container__form-add');
 }
 
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
 function editFormSubmitHandler(evt) {
-  evt.preventDefault(); 
-  // Эта строчка отменяет стандартную отправку формы.
-  // Так мы можем определить свою логику отправки.
-  // О том, как это делать, расскажем позже.
+  evt.preventDefault();
 
   let nameValue = nameInput.value;
   let jobValue = jobInput.value;
@@ -94,6 +91,7 @@ function editFormSubmitHandler(evt) {
   namePlace.textContent = nameValue;
   jobPlace.textContent = jobValue;
   
+  formElement.removeEventListener('submit', editFormSubmitHandler);
   closePopup();
 }
 
@@ -108,32 +106,17 @@ function addFormSubmitHandler(evt) {
   cardElement.querySelector('.card__image').src = jobInput.value;
 
   elements.prepend(cardElement);
+  formElement.removeEventListener('submit', addFormSubmitHandler);
   closePopup();
 }
 
 
 editButton.addEventListener('click', function (evt) {
-  openPopup(editForm);
-  formElement.classList.add('popup-container__form-edit');
-  let editFormElement = document.querySelector('.popup-container__form-edit');
-  
-  nameInput.value = namePlace.textContent;
-  jobInput.value = jobPlace.textContent;
-  editFormElement.addEventListener('submit', editFormSubmitHandler);
-  console.log(formElement.classList);
+  openPopup(editForm, namePlace.textContent, jobPlace.textContent, editFormSubmitHandler);
 });
 
 addButton.addEventListener('click', function (evt) {
-  formElement.classList.add('popup-container__form-add');
-  let addFormElement = document.querySelector('.popup-container__form-add');
-  openPopup(addForm);
-  nameInput.value = '';
-  jobInput.value = '';
-  submitButton.setAttribute('name', 'add-submit-button');
-  addFormElement.addEventListener('submit', addFormSubmitHandler);
-  console.log(formElement.classList);
+  openPopup(addForm, '', '', addFormSubmitHandler);  
 });
 
 closePopupButton.addEventListener('click', closePopup);
-// editFormElement.addEventListener('submit', editFormSubmitHandler);
-// addFormElement.addEventListener('submit', addFormSubmitHandler);
