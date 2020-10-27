@@ -25,7 +25,23 @@ const initialCards = [
   }
 ];
 
+
+const editForm = {
+  heading: 'Редактировать профиль',
+  button: 'Сохранить',
+  nameInputPlaceholder: 'Введите своё имя',
+  linkInputPlaceholder: 'Введите описание',
+};
+
+const addForm = {
+  heading: 'Новое место',
+  button: 'Создать',
+  nameInputPlaceholder: 'Название',
+  linkInputPlaceholder: 'Ссылка на картинку',
+};
+
 let editButton = document.querySelector('.profile__edit-button');
+let addButton = document.querySelector('.profile__add-button');
 let closePopupButton = document.querySelector('.popup-container__close-icon');
 let submitButton = document.querySelector('.popup-container__submit-button');
 let formElement = document.querySelector('.popup-container__form');
@@ -34,6 +50,8 @@ let nameInput = document.querySelector('.popup-container__form-item_el_name');
 let jobInput = document.querySelector('.popup-container__form-item_el_text');
 let namePlace = document.querySelector('.profile__header');
 let jobPlace = document.querySelector('.profile__subheader');
+
+let popupHeading = document.querySelector('.popup-container__heading');
 
 
 initialCards.forEach(function (elem) {
@@ -45,20 +63,23 @@ initialCards.forEach(function (elem) {
     cardElement.querySelector('.card__image').src = elem.link;
 
     elements.prepend(cardElement);
-
 });
 
-
-
-function openPopup() {
+function openPopup(obj) {
   popup.classList.add('popup_opened');
-  nameInput.value = namePlace.textContent;
-  jobInput.value = jobPlace.textContent;
+
+  popupHeading.textContent = obj.heading;
+  submitButton.textContent = obj.button;
+  
+  nameInput.setAttribute('placeholder', obj.nameInputPlaceholder);
+  jobInput.setAttribute('placeholder', obj.linkInputPlaceholder);
 }
+
 
 function closePopup() {
   popup.classList.remove('popup_opened');
 }
+
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
@@ -76,8 +97,19 @@ function formSubmitHandler(evt) {
   closePopup();
 }
 
-editButton.addEventListener('click', openPopup);
+
+editButton.addEventListener('click', function () {
+  openPopup(editForm);
+  nameInput.value = namePlace.textContent;
+  jobInput.value = jobPlace.textContent;
+});
+
+addButton.addEventListener('click', function () {
+  openPopup(addForm);
+  nameInput.value = '';
+  jobInput.value = '';
+});
+
 closePopupButton.addEventListener('click', closePopup);
-// submitButton.addEventListener('submit', closePopup);
 formElement.addEventListener('submit', formSubmitHandler);
 
