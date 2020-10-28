@@ -55,6 +55,7 @@ let popupHeading = document.querySelector('.popup-container__heading');
 let formElement = document.querySelector('.popup-container__form');
 
 
+
 initialCards.forEach(function (elem) {
     const elements = document.querySelector('.elements');
     const cardTemplate = document.querySelector('#card-template').content;
@@ -69,10 +70,6 @@ initialCards.forEach(function (elem) {
 
     cardElement.querySelector('.card__delete').addEventListener('click', function(evt) {
       evt.target.parentElement.remove();
-    });
-
-    cardElement.querySelector('.card__image').addEventListener('click', function() {
-      openPopupImage(elem.link);
     });
 
     elements.prepend(cardElement);
@@ -124,22 +121,34 @@ function addFormSubmitHandler(evt) {
   const cardElement = cardTemplate.cloneNode(true);
   
   cardElement.querySelector('.card__heading').textContent = nameInput.value;
-  cardElement.querySelector('.card__image').src = jobInput.value;
 
+  cardElement.querySelector('.card__image').src = jobInput.value;
+  cardElement.querySelector('.card__image').addEventListener('click', function() {
+    openPopupImage(jobInput.value);
+  });
   elements.prepend(cardElement);
+
+
   formElement.removeEventListener('submit', addFormSubmitHandler);
   closePopup();
 }
-
-
 
 editButton.addEventListener('click', function (evt) {
   openPopup(editForm, namePlace.textContent, jobPlace.textContent, editFormSubmitHandler);
 });
 
 addButton.addEventListener('click', function (evt) {
-  openPopup(addForm, '', '', addFormSubmitHandler);  
+  openPopup(addForm, '', '', addFormSubmitHandler);
 });
 
 closeEditPopup.addEventListener('click', closePopup);
 closeImagePopup.addEventListener('click', closePopup);
+
+let cardImage = document.querySelectorAll('.card__image');
+
+cardImage.forEach(function (elem) {
+  const imageSrc = elem.getAttribute('src');
+  elem.addEventListener('click', function() {
+    openPopupImage(imageSrc);
+  });
+});
