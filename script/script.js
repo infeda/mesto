@@ -148,7 +148,7 @@ let card = document.querySelectorAll('.card');
 card.forEach(function (elem) {
   const imageSrc = elem.querySelector('.card__image').getAttribute('src');
   const imageHeading = elem.querySelector('.card__heading').textContent;
-  elem.addEventListener('click', function() {
+  elem.querySelector('.card__image').addEventListener('click', function() {
     openPopupImage(imageSrc, imageHeading);
   });
 });
