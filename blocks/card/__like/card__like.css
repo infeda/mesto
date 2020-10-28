@@ -1,8 +1,19 @@
 .card__like {
-  width: 21px;
-  height: 18px;
-  object-fit: contain;
-  object-position: center;
-  
+  width: 20.76px;
+  height: 18.13px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background: url('../../../images/card-like.svg') center no-repeat;
+  background-size: 100%;
+  border: none;
+  transition: 0.5s linear opacity;
+  padding: 0;
+  margin: auto 0;
 }
 
+@media (min-width: 768px) {
+  .card__like:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
+}

@@ -60,6 +60,10 @@ initialCards.forEach(function (elem) {
     cardElement.querySelector('.card__heading').textContent = elem.name;
     cardElement.querySelector('.card__image').src = elem.link;
 
+    cardElement.querySelector('.card__like').addEventListener('click', function(evt) {
+      evt.target.classList.toggle('card__like_active');
+    });
+
     elements.prepend(cardElement);
 });
 
@@ -109,6 +113,7 @@ function addFormSubmitHandler(evt) {
   formElement.removeEventListener('submit', addFormSubmitHandler);
   closePopup();
 }
+
 
 
 editButton.addEventListener('click', function (evt) {
