@@ -35,3 +35,5 @@
 @import url('../blocks/popup-container/__input-container/popup-container__input-container.css');
 @import url('../blocks/popup-container/__submit-button/popup-container__submit-button.css');
 @import url('../blocks/popup-container/__form-item/popup-container__form-item.css');
+@import url('../blocks/popup-container-image/popup-container-image.css');
+@import url('../blocks/popup-container-image/__image/popup-container-image__image.css');
