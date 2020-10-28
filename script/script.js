@@ -42,7 +42,8 @@ const addForm = {
 
 let editButton = document.querySelector('.profile__edit-button');
 let addButton = document.querySelector('.profile__add-button');
-let closePopupButton = document.querySelector('.popup-container__close-icon');
+let closeEditPopup = document.querySelector('.popup-container__close-button_popup_edit');
+let closeImagePopup = document.querySelector('.popup-container__close-button_popup_image');
 let submitButton = document.querySelector('.popup-container__submit-button');
 let popup = document.querySelector('.popup_info');
 let popupImage = document.querySelector('.popup_image');
@@ -80,7 +81,6 @@ initialCards.forEach(function (elem) {
 function openPopupImage(imageSrc) {
   popupImage.classList.add('popup_opened');
   popupImage.querySelector('.popup-container-image__image').src = imageSrc;
-  closePopupButton.addEventListener('click', closePopup);
 }
 
 function openPopup(obj, a, b, handler) {
@@ -141,4 +141,5 @@ addButton.addEventListener('click', function (evt) {
   openPopup(addForm, '', '', addFormSubmitHandler);  
 });
 
-closePopupButton.addEventListener('click', closePopup);
+closeEditPopup.addEventListener('click', closePopup);
+closeImagePopup.addEventListener('click', closePopup);
