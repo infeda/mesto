@@ -54,8 +54,6 @@ let jobPlace = document.querySelector('.profile__subheader');
 let popupHeading = document.querySelector('.popup-container__heading');
 let formElement = document.querySelector('.popup-container__form');
 
-
-
 initialCards.forEach(function (elem) {
     const elements = document.querySelector('.elements');
     const cardTemplate = document.querySelector('#card-template').content;
@@ -75,9 +73,10 @@ initialCards.forEach(function (elem) {
     elements.prepend(cardElement);
 });
 
-function openPopupImage(imageSrc) {
+function openPopupImage(imageSrc, imageHeading) {
   popupImage.classList.add('popup_opened');
   popupImage.querySelector('.popup-container-image__image').src = imageSrc;
+  popupImage.querySelector('.popup-container-image__heading').textContent = imageHeading;
 }
 
 function openPopup(obj, a, b, handler) {
@@ -124,7 +123,7 @@ function addFormSubmitHandler(evt) {
 
   cardElement.querySelector('.card__image').src = jobInput.value;
   cardElement.querySelector('.card__image').addEventListener('click', function() {
-    openPopupImage(jobInput.value);
+    openPopupImage(jobInput.value, nameInput.value);
   });
   elements.prepend(cardElement);
 
@@ -144,11 +143,12 @@ addButton.addEventListener('click', function (evt) {
 closeEditPopup.addEventListener('click', closePopup);
 closeImagePopup.addEventListener('click', closePopup);
 
-let cardImage = document.querySelectorAll('.card__image');
+let card = document.querySelectorAll('.card');
 
-cardImage.forEach(function (elem) {
-  const imageSrc = elem.getAttribute('src');
+card.forEach(function (elem) {
+  const imageSrc = elem.querySelector('.card__image').getAttribute('src');
+  const imageHeading = elem.querySelector('.card__heading').textContent;
   elem.addEventListener('click', function() {
-    openPopupImage(imageSrc);
+    openPopupImage(imageSrc, imageHeading);
   });
 });

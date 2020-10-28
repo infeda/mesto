@@ -1,0 +1,10 @@
+.popup-container-image__heading {
+  position: absolute;
+  left: 0;
+  bottom: -22px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
+}
