@@ -64,6 +64,10 @@ initialCards.forEach(function (elem) {
       evt.target.classList.toggle('card__like_active');
     });
 
+    cardElement.querySelector('.card__delete').addEventListener('click', function(evt) {
+      evt.target.parentElement.remove();
+    });
+
     elements.prepend(cardElement);
 });
 
