@@ -87,7 +87,6 @@ function openPopupImage(imageSrc, imageHeading) {
 
 function openPopup(obj, a, b, handler) {
   popup.classList.add('popup_opened');
-  document.querySelector('.popup_opened').style.transition = 'opacity 5s linear'
 
   popupHeading.textContent = obj.heading;
   submitButton.textContent = obj.button;
