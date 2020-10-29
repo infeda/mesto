@@ -85,17 +85,17 @@ function openPopupImage(imageSrc, imageHeading) {
   popupImage.querySelector('.popup-container-image__heading').textContent = imageHeading;
 }
 
-function openPopup(obj, a, b, handler) {
+function openPopup(formInfo, firstInputValue, secondInputValue, handler) {
   popup.classList.add('popup_opened');
 
-  popupHeading.textContent = obj.heading;
-  submitButton.textContent = obj.button;
+  popupHeading.textContent = formInfo.heading;
+  submitButton.textContent = formInfo.button;
 
-  nameInput.value = a;
-  jobInput.value = b;
+  nameInput.value = firstInputValue;
+  jobInput.value = secondInputValue;
   
-  nameInput.setAttribute('placeholder', obj.nameInputPlaceholder);
-  jobInput.setAttribute('placeholder', obj.linkInputPlaceholder);
+  nameInput.setAttribute('placeholder', formInfo.nameInputPlaceholder);
+  jobInput.setAttribute('placeholder', formInfo.linkInputPlaceholder);
 
   formElement.addEventListener('submit', handler);
 }
