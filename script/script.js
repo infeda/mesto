@@ -49,6 +49,7 @@ function makeCard(elem) {
   
   cardElement.querySelector('.card__heading').textContent = elem.name;
   cardElement.querySelector('.card__image').src = elem.link;
+  cardElement.querySelector('.card__image').setAttribute('alt', elem.name);
 
   cardElement.querySelector('.card__like').addEventListener('click', function(evt) {
     evt.target.classList.toggle('card__like_active');
@@ -114,7 +115,7 @@ function addFormSubmitHandler(evt) {
     link: jobInput.value
   };
 
-  addCard(cardInfo);
+  makeCard(cardInfo);
  
   formElement.removeEventListener('submit', addFormSubmitHandler);
   closePopup(popupAdd);
