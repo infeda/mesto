@@ -82,6 +82,7 @@ function openPopupImage(popupToOpen, imageSrc, imageHeading) {
   addClassPopupOpened(popupToOpen);
   popupImage.querySelector('.popup-container-image__image').src = imageSrc;
   popupImage.querySelector('.popup-container-image__heading').textContent = imageHeading;
+  popupImage.querySelector('.popup-container-image__image').setAttribute('alt', imageHeading);
 }
 
 function openPopup(popupToOpen, firstInputValue, secondInputValue, handler, formElement) {
