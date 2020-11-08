@@ -32,22 +32,41 @@
       <section class="elements">
       
       </section>
-      <div class="popup popup_info">
+      <div class="popup popup_edit">
         <div class="popup-container">
           <button class="popup-container__close-button popup-container__close-button_popup_edit" type="button" name="close-edit-popup">
             <img class="popup-container__close-icon" src="./images/Close-Icon.svg" alt="закрыть">
           </button>
-          <h2 class="popup-container__heading"></h2>
+          <h2 class="popup-container__heading">Редактировать профиль</h2>
           <form class="popup-container__form" name="popup-form">
             <fieldset class="popup-container__input-container">
               <input type="text" name="name" id="name" value=""
-                class="popup-container__form-item popup-container__form-item_el_name" placeholder=""
+                class="popup-container__form-item popup-container__form-item_el_name" placeholder="Введите своё имя"
                 required>
               <input type="text" name="text" id="text" value=""
-                class="popup-container__form-item popup-container__form-item_el_text" placeholder=""
+                class="popup-container__form-item popup-container__form-item_el_text" placeholder="Введите описание"
                 required>
             </fieldset>
-            <button type="submit" class="popup-container__submit-button" name="submit-button"></button>
+            <button type="submit" class="popup-container__submit-button" name="editt-submit-button">Сохранить</button>
+          </form>
+        </div>
+      </div>
+      <div class="popup popup_add">
+        <div class="popup-container">
+          <button class="popup-container__close-button popup-container__close-button_popup_add" type="button" name="close-add-popup">
+            <img class="popup-container__close-icon" src="./images/Close-Icon.svg" alt="закрыть">
+          </button>
+          <h2 class="popup-container__heading">Новое место</h2>
+          <form class="popup-container__form" name="popup-form">
+            <fieldset class="popup-container__input-container">
+              <input type="text" name="heading" id="heading" value=""
+                class="popup-container__form-item popup-container__form-item_el_name" placeholder="Название"
+                required>
+              <input type="text" name="link" id="link" value=""
+                class="popup-container__form-item popup-container__form-item_el_text" placeholder="Ссылка на картинку"
+                required>
+            </fieldset>
+            <button type="submit" class="popup-container__submit-button" name="add-submit-button">Создать</button>
           </form>
         </div>
       </div>

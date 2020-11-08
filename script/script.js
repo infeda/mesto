@@ -25,27 +25,14 @@ const initialCards = [
   }
 ];
 
-
-const editForm = {
-  heading: 'Редактировать профиль',
-  button: 'Сохранить',
-  nameInputPlaceholder: 'Введите своё имя',
-  linkInputPlaceholder: 'Введите описание',
-};
-
-const addForm = {
-  heading: 'Новое место',
-  button: 'Создать',
-  nameInputPlaceholder: 'Название',
-  linkInputPlaceholder: 'Ссылка на картинку',
-};
-
 let editButton = document.querySelector('.profile__edit-button');
 let addButton = document.querySelector('.profile__add-button');
 let closeEditPopup = document.querySelector('.popup-container__close-button_popup_edit');
+let closeAddPopup = document.querySelector('.popup-container__close-button_popup_add');
 let closeImagePopup = document.querySelector('.popup-container__close-button_popup_image');
 let submitButton = document.querySelector('.popup-container__submit-button');
-let popup = document.querySelector('.popup_info');
+let popupEdit = document.querySelector('.popup_edit');
+let popupAdd = document.querySelector('.popup_add');
 let popupImage = document.querySelector('.popup_image');
 let nameInput = document.querySelector('.popup-container__form-item_el_name');
 let jobInput = document.querySelector('.popup-container__form-item_el_text');
@@ -54,10 +41,9 @@ let jobPlace = document.querySelector('.profile__subheader');
 let popupHeading = document.querySelector('.popup-container__heading');
 let formElement = document.querySelector('.popup-container__form');
 
-initialCards.forEach(addCard);
+initialCards.forEach(makeCard);
 
-function addCard(elem) {
-  const elements = document.querySelector('.elements');
+function makeCard(elem) {
   const cardTemplate = document.querySelector('#card-template').content;
   const cardElement = cardTemplate.cloneNode(true);
   
@@ -73,36 +59,38 @@ function addCard(elem) {
   });
 
   cardElement.querySelector('.card__image').addEventListener('click', function() {
-    openPopupImage(elem.link, elem.name);
+    openPopupImage(popupImage, elem.link, elem.name);
   });
 
+  addCard(cardElement);
+}
+
+function addCard(cardElement) {
+  const elements = document.querySelector('.elements');
   elements.prepend(cardElement);
 }
 
-function openPopupImage(imageSrc, imageHeading) {
-  popupImage.classList.add('popup_opened');
+function addClassPopupOpened (popupToOpen) {
+  popupToOpen.classList.add('popup_opened');
+}
+
+function openPopupImage(popupToOpen, imageSrc, imageHeading) {
+  addClassPopupOpened(popupToOpen);
   popupImage.querySelector('.popup-container-image__image').src = imageSrc;
   popupImage.querySelector('.popup-container-image__heading').textContent = imageHeading;
 }
 
-function openPopup(formInfo, firstInputValue, secondInputValue, handler) {
-  popup.classList.add('popup_opened');
-
-  popupHeading.textContent = formInfo.heading;
-  submitButton.textContent = formInfo.button;
+function openPopup(popupToOpen, firstInputValue, secondInputValue, handler) {
+  addClassPopupOpened(popupToOpen);
 
   nameInput.value = firstInputValue;
   jobInput.value = secondInputValue;
-  
-  nameInput.setAttribute('placeholder', formInfo.nameInputPlaceholder);
-  jobInput.setAttribute('placeholder', formInfo.linkInputPlaceholder);
 
   formElement.addEventListener('submit', handler);
 }
 
-function closePopup() {
-  popup.classList.remove('popup_opened');
-  popupImage.classList.remove('popup_opened');
+function closePopup(popupToClose) {
+  popupToClose.classList.remove('popup_opened');
 }
 
 function editFormSubmitHandler(evt) {
@@ -115,7 +103,7 @@ function editFormSubmitHandler(evt) {
   jobPlace.textContent = jobValue;
   
   formElement.removeEventListener('submit', editFormSubmitHandler);
-  closePopup();
+  closePopup(popupEdit);
 }
 
 function addFormSubmitHandler(evt) {
@@ -129,16 +117,23 @@ function addFormSubmitHandler(evt) {
   addCard(cardInfo);
  
   formElement.removeEventListener('submit', addFormSubmitHandler);
-  closePopup();
+  closePopup(popupAdd);
 }
 
 editButton.addEventListener('click', function (evt) {
-  openPopup(editForm, namePlace.textContent, jobPlace.textContent, editFormSubmitHandler);
+  openPopup(popupEdit, namePlace.textContent, jobPlace.textContent, editFormSubmitHandler);
 });
 
 addButton.addEventListener('click', function (evt) {
-  openPopup(addForm, '', '', addFormSubmitHandler);
+  openPopup(popupAdd, '', '', addFormSubmitHandler);
 });
 
-closeEditPopup.addEventListener('click', closePopup);
-closeImagePopup.addEventListener('click', closePopup);
+closeEditPopup.addEventListener('click', function () {
+  closePopup(popupEdit);
+});
+closeAddPopup.addEventListener('click', function () {
+  closePopup(popupAdd);
+});
+closeImagePopup.addEventListener('click', function () {
+  closePopup(popupImage);
+});
