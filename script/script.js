@@ -36,10 +36,13 @@ let popupAdd = document.querySelector('.popup_add');
 let popupImage = document.querySelector('.popup_image');
 let nameInput = document.querySelector('.popup-container__form-item_el_name');
 let jobInput = document.querySelector('.popup-container__form-item_el_text');
+let headingInput = document.querySelector('.popup-container__form-item_el_heading');
+let linkInput = document.querySelector('.popup-container__form-item_el_link');
 let namePlace = document.querySelector('.profile__header');
 let jobPlace = document.querySelector('.profile__subheader');
 let popupHeading = document.querySelector('.popup-container__heading');
-let formElement = document.querySelector('.popup-container__form');
+let editFormElement = document.querySelector('.popup-container__form_edit');
+let addFormElement = document.querySelector('.popup-container__form_add');
 
 initialCards.forEach(makeCard);
 
@@ -81,7 +84,7 @@ function openPopupImage(popupToOpen, imageSrc, imageHeading) {
   popupImage.querySelector('.popup-container-image__heading').textContent = imageHeading;
 }
 
-function openPopup(popupToOpen, firstInputValue, secondInputValue, handler) {
+function openPopup(popupToOpen, firstInputValue, secondInputValue, handler, formElement) {
   addClassPopupOpened(popupToOpen);
 
   nameInput.value = firstInputValue;
@@ -103,7 +106,7 @@ function editFormSubmitHandler(evt) {
   namePlace.textContent = nameValue;
   jobPlace.textContent = jobValue;
   
-  formElement.removeEventListener('submit', editFormSubmitHandler);
+  editFormElement.removeEventListener('submit', editFormSubmitHandler);
   closePopup(popupEdit);
 }
 
@@ -111,22 +114,22 @@ function addFormSubmitHandler(evt) {
   evt.preventDefault();
 
   const cardInfo = {
-    name: nameInput.value,
-    link: jobInput.value
+    name: headingInput.value,
+    link: linkInput.value
   };
 
   makeCard(cardInfo);
  
-  formElement.removeEventListener('submit', addFormSubmitHandler);
+  addFormElement.removeEventListener('submit', addFormSubmitHandler);
   closePopup(popupAdd);
 }
 
 editButton.addEventListener('click', function (evt) {
-  openPopup(popupEdit, namePlace.textContent, jobPlace.textContent, editFormSubmitHandler);
+  openPopup(popupEdit, namePlace.textContent, jobPlace.textContent, editFormSubmitHandler, editFormElement);
 });
 
 addButton.addEventListener('click', function (evt) {
-  openPopup(popupAdd, '', '', addFormSubmitHandler);
+  openPopup(popupAdd, '', '', addFormSubmitHandler, addFormElement);
 });
 
 closeEditPopup.addEventListener('click', function () {

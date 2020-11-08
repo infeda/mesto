@@ -30,15 +30,16 @@
         </button>
       </div>
       <section class="elements">
-      
+
       </section>
       <div class="popup popup_edit">
         <div class="popup-container">
-          <button class="popup-container__close-button popup-container__close-button_popup_edit" type="button" name="close-edit-popup">
+          <button class="popup-container__close-button popup-container__close-button_popup_edit" type="button"
+            name="close-edit-popup">
             <img class="popup-container__close-icon" src="./images/Close-Icon.svg" alt="закрыть">
           </button>
           <h2 class="popup-container__heading">Редактировать профиль</h2>
-          <form class="popup-container__form" name="popup-form">
+          <form class="popup-container__form popup-container__form_edit" name="popup-form-edit">
             <fieldset class="popup-container__input-container">
               <input type="text" name="name" id="name" value=""
                 class="popup-container__form-item popup-container__form-item_el_name" placeholder="Введите своё имя"
@@ -47,23 +48,24 @@
                 class="popup-container__form-item popup-container__form-item_el_text" placeholder="Введите описание"
                 required>
             </fieldset>
-            <button type="submit" class="popup-container__submit-button" name="editt-submit-button">Сохранить</button>
+            <button type="submit" class="popup-container__submit-button" name="edit-submit-button">Сохранить</button>
           </form>
         </div>
       </div>
       <div class="popup popup_add">
         <div class="popup-container">
-          <button class="popup-container__close-button popup-container__close-button_popup_add" type="button" name="close-add-popup">
+          <button class="popup-container__close-button popup-container__close-button_popup_add" type="button"
+            name="close-add-popup">
             <img class="popup-container__close-icon" src="./images/Close-Icon.svg" alt="закрыть">
           </button>
           <h2 class="popup-container__heading">Новое место</h2>
-          <form class="popup-container__form" name="popup-form">
+          <form class="popup-container__form popup-container__form_add" name="popup-form-add">
             <fieldset class="popup-container__input-container">
               <input type="text" name="heading" id="heading" value=""
-                class="popup-container__form-item popup-container__form-item_el_name" placeholder="Название"
+                class="popup-container__form-item popup-container__form-item_el_heading" placeholder="Название"
                 required>
               <input type="text" name="link" id="link" value=""
-                class="popup-container__form-item popup-container__form-item_el_text" placeholder="Ссылка на картинку"
+                class="popup-container__form-item popup-container__form-item_el_link" placeholder="Ссылка на картинку"
                 required>
             </fieldset>
             <button type="submit" class="popup-container__submit-button" name="add-submit-button">Создать</button>
@@ -72,7 +74,8 @@
       </div>
       <div class="popup popup_image">
         <div class="popup-container-image">
-          <button class="popup-container__close-button popup-container__close-button_popup_image" type="button" name="close-image-popup">
+          <button class="popup-container__close-button popup-container__close-button_popup_image" type="button"
+            name="close-image-popup">
             <img class="popup-container__close-icon" src="./images/Close-Icon.svg" alt="закрыть">
           </button>
           <img class="popup-container-image__image" src="" alt="увеличенная фотография">
@@ -88,9 +91,7 @@
   </div>
   <template id="card-template">
     <article class="card">
-      <img class="card__image"
-        src=""
-        alt="картинка Домбай">
+      <img class="card__image" src="" alt="картинка Домбай">
       <div class="card__content">
         <h2 class="card__heading"></h2>
         <button class="card__like" type="button" name="like-button">
