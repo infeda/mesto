@@ -27,9 +27,9 @@ const initialCards = [
 
 let editButton = document.querySelector('.profile__edit-button');
 let addButton = document.querySelector('.profile__add-button');
-let closeEditPopup = document.querySelector('.popup-container__close-button_popup_edit');
-let closeAddPopup = document.querySelector('.popup-container__close-button_popup_add');
-let closeImagePopup = document.querySelector('.popup-container__close-button_popup_image');
+let closeEditPopup = document.querySelector('.popup__close-button_popup_edit');
+let closeAddPopup = document.querySelector('.popup__close-button_popup_add');
+let closeImagePopup = document.querySelector('.popup__close-button_popup_image');
 let submitButton = document.querySelector('.popup-container__submit-button');
 let popupEdit = document.querySelector('.popup_edit');
 let popupAdd = document.querySelector('.popup_add');
