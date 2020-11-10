@@ -112,6 +112,7 @@ function addFormSubmitHandler(evt) {
   };
 
   elements.prepend(createCard(cardInfo));
+  
   headingInput.value = '';
   linkInput.value = '';
  
