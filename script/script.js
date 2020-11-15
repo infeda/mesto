@@ -1,30 +1,3 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const closeEditPopup = document.querySelector('.popup__close-button_popup_edit');
@@ -64,7 +37,7 @@ function createCard(elem) {
   });
 
   cardElement.querySelector('.card__image').addEventListener('click', function() {
-    openPopupImage(popupImage, elem.link, elem.name);
+    openPopupImage(elem.link, elem.name);
   });
 
   return cardElement;
@@ -78,11 +51,11 @@ function closePopup(popupToClose) {
   popupToClose.classList.remove('popup_opened');
 }
 
-function openPopupImage(popupToOpen, imageSrc, imageHeading) {
-  openPopup(popupToOpen);
+function openPopupImage(imageSrc, imageHeading) {
+  openPopup(popupImage);
   imageOfPopupImage.src = imageSrc;
   headingOfPopupImage.textContent = imageHeading;
-  imageOfPopupImage.setAttribute('alt', imageHeading);
+  imageOfPopupImage.alt = imageHeading;
 }
 
 function openProfilePopup() {
@@ -119,22 +92,22 @@ function addFormSubmitHandler(evt) {
   closePopup(popupAdd);
 }
 
-initialCards.forEach(elem => elements.prepend(createCard(elem)) );
+initialCards.forEach(elem => elements.append(createCard(elem)) );
 
 
-editButton.addEventListener('click', function (evt) {
+editButton.addEventListener('click', () => {
   openProfilePopup();
 });
-addButton.addEventListener('click', function () {
+addButton.addEventListener('click', () => {
   openPopup(popupAdd);
 });
-closeEditPopup.addEventListener('click', function () {
+closeEditPopup.addEventListener('click', () => {
   closePopup(popupEdit);
 });
-closeAddPopup.addEventListener('click', function () {
+closeAddPopup.addEventListener('click', () => {
   closePopup(popupAdd);
 });
-closeImagePopup.addEventListener('click', function () {
+closeImagePopup.addEventListener('click', () => {
   closePopup(popupImage);
 });
 editFormElement.addEventListener('submit', editFormSubmitHandler);
