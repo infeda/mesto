@@ -19,3 +19,8 @@
 .popup-container__form-item:focus {
 outline-color: #fff6c5;
 }
+
+.popup-container__form-item:invalid {
+  border-bottom: 1px solid #ff0000;
+}
+

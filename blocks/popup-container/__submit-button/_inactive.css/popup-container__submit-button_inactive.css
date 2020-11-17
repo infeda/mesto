@@ -1,0 +1,13 @@
+.popup-container__submit-button_inactive {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    color: #000000;
+    opacity: 0.2;
+}
+
+@media (min-width: 768px) {
+    .popup-container__submit-button_inactive:hover {
+      opacity: 0.2;
+      cursor: auto;
+    }
+  }
