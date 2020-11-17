@@ -3,12 +3,12 @@ const addButton = document.querySelector('.profile__add-button');
 const closeEditPopup = document.querySelector('.popup__close-button_popup_edit');
 const closeAddPopup = document.querySelector('.popup__close-button_popup_add');
 const closeImagePopup = document.querySelector('.popup__close-button_popup_image');
+const popups = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_edit');
 const popupAdd = document.querySelector('.popup_add');
 const popupImage = document.querySelector('.popup_image');
 const nameInput = document.querySelector('.popup-container__form-item_el_name');
 const jobInput = document.querySelector('.popup-container__form-item_el_text');
-
 const headingInput = document.querySelector('.popup-container__form-item_el_heading');
 const linkInput = document.querySelector('.popup-container__form-item_el_link');
 const namePlace = document.querySelector('.profile__header');
@@ -125,10 +125,8 @@ const hasInvalidInput = (inputList) => {
 
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
-    console.log('should be inactive');
     buttonElement.classList.add('popup-container__submit-button_inactive');
   } else {
-    console.log('should be active');
     buttonElement.classList.remove('popup-container__submit-button_inactive');
   };
 };
@@ -178,3 +176,17 @@ closeImagePopup.addEventListener('click', () => {
 
 editFormElement.addEventListener('submit', editFormSubmitHandler);
 addFormElement.addEventListener('submit', addFormSubmitHandler);
+
+popups.forEach( (popup) => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup);
+    };
+  });
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === "Escape") {
+      closePopup(popup);
+    };
+  });
+});
+
