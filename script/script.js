@@ -45,10 +45,21 @@ const createCard = (elem) => {
 
 const openPopup = (popupToOpen) => {
   popupToOpen.classList.add('popup_opened');
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === "Escape") {
+      closePopup(popupToOpen);
+    };
+  });
 };
 
 const closePopup = (popupToClose) => {
   popupToClose.classList.remove('popup_opened');
+  document.removeEventListener('keydown', (evt) => {
+    console.log(evt.key);
+    if (evt.key === "Escape") {
+      closePopup(popupToOpen);
+    };
+  });
 };
 
 const openPopupImage = (imageSrc, imageHeading) => {
@@ -62,6 +73,7 @@ const openProfilePopup = () => {
   openPopup(popupEdit);
   nameInput.value = namePlace.textContent;
   jobInput.value = jobPlace.textContent;
+  toggleButtonState([nameInput, jobInput], popupEdit.querySelector('.popup-container__submit-button'));
 };
 
 const editFormSubmitHandler = (evt) => {
@@ -134,7 +146,7 @@ const toggleButtonState = (inputList, buttonElement) => {
 const setEventListeners = (formElement) => {
   const inputList = Array.from(formElement.querySelectorAll('.popup-container__form-item'));
   const buttonElement = formElement.querySelector('.popup-container__submit-button');
-  toggleButtonState(inputList, buttonElement);
+  // toggleButtonState(inputList, buttonElement);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       isValid(formElement, inputElement);
@@ -160,6 +172,7 @@ editButton.addEventListener('click', () => {
 });
 addButton.addEventListener('click', () => {
   openPopup(popupAdd);
+  toggleButtonState({headingInput, linkInput}, popupAdd.addEventListener('.popup-container__submit-button'));
 });
 closeEditPopup.addEventListener('click', () => {
   closePopup(popupEdit);
@@ -180,11 +193,6 @@ addFormElement.addEventListener('submit', addFormSubmitHandler);
 popups.forEach( (popup) => {
   popup.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('popup_opened')) {
-      closePopup(popup);
-    };
-  });
-  document.addEventListener('keydown', (evt) => {
-    if (evt.key === "Escape") {
       closePopup(popup);
     };
   });
