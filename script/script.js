@@ -73,6 +73,7 @@ const openProfilePopup = () => {
   openPopup(popupEdit);
   nameInput.value = namePlace.textContent;
   jobInput.value = jobPlace.textContent;
+  resetValidation(popupEdit, config);
 };
 
 const editFormSubmitHandler = (evt) => {
@@ -154,12 +155,12 @@ const setEventListeners = (formElement) => {
 };
 
 const config = {
-    formSelector: '.popup-container__form',
-    inputSelector: '.popup-container__form-item',
-    submitButtonSelector: '.popup-container__submit-button',
-    inactiveButtonClass: 'popup-container__submit-button_inactive',
-    inputErrorClass: 'popup-container__form-item_type_error',
-    errorClass: 'popup-container__form-item-error-active'
+  formSelector: '.popup-container__form',
+  inputSelector: '.popup-container__form-item',
+  submitButtonSelector: '.popup-container__submit-button',
+  inactiveButtonClass: 'popup-container__submit-button_inactive',
+  inputErrorClass: 'popup-container__form-item_type_error',
+  errorClass: 'popup-container__form-item-error-active'
 };
 
 const enableValidation = () => {
@@ -169,6 +170,19 @@ const enableValidation = () => {
   });
 };
 
+const resetValidation = (form, config) => {
+  const errors = form.querySelectorAll(config.inputErrorClass);
+  const inputs = Array.from(form.querySelectorAll(config.inputSelector));
+  const button = form.querySelector(config.submitButtonSelector);
+  errors.forEach((error) => {
+    error.classList.remove(config.errorClass);
+    hideInputError(form, input);
+  });
+  inputs.forEach((input) => {
+    hideInputError(form, input);
+  });
+  toggleButtonState(inputs, button);
+};
 
 initialCards.forEach(elem => elements.append(createCard(elem)) );
 
@@ -179,6 +193,7 @@ editButton.addEventListener('click', () => {
 });
 addButton.addEventListener('click', () => {
   openPopup(popupAdd);
+  resetValidation(popupAdd, config);
 });
 closeEditPopup.addEventListener('click', () => {
   closePopup(popupEdit);
