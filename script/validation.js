@@ -39,11 +39,10 @@ const showInputError = (formElement, inputElement, errorMessage) => {
   const setEventListeners = (formElement) => {
     const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
     const buttonElement = formElement.querySelector(config.submitButtonSelector);
-    // toggleButtonState(inputList, buttonElement);
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         isValid(formElement, inputElement);
-        toggleButtonState(inputList, buttonElement, config);
+        toggleButtonState(inputList, buttonElement);
       });
     });
   };
@@ -53,4 +52,18 @@ const showInputError = (formElement, inputElement, errorMessage) => {
     formList.forEach((formElement) => {
       setEventListeners(formElement, config);
     });
+  };
+
+  const resetValidation = (form, config) => {
+    const errors = form.querySelectorAll(config.inputErrorClass);
+    const inputs = Array.from(form.querySelectorAll(config.inputSelector));
+    const button = form.querySelector(config.submitButtonSelector);
+    errors.forEach((error) => {
+      error.classList.remove(config.errorClass);
+      hideInputError(form, input);
+    });
+    inputs.forEach((input) => {
+      hideInputError(form, input);
+    });
+    toggleButtonState(inputs, button);
   };
