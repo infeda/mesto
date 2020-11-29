@@ -58,6 +58,16 @@ const closePopupOnEsc = (evt, popupToClose) => {
   };
 };
 
+const closePopupByClick = (evt, popup) => {
+  if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-icon')) {
+    closePopup(popup);
+    if (popup.classList.contains('popup_add')) {
+      headingInput.value = '';
+      linkInput.value = '';
+    };
+  };
+};
+
 const openPopup = (popupToOpen) => {
   popupToOpen.classList.add('popup_opened');
   document.addEventListener('keydown', (evt) => {
@@ -122,26 +132,19 @@ addButton.addEventListener('click', () => {
   openPopup(popupAdd);
   resetValidation(popupAdd, config);
 });
-closeEditPopup.addEventListener('click', () => {
-  closePopup(popupEdit);
-});
-closeAddPopup.addEventListener('click', () => {
-  closePopup(popupAdd);
-  headingInput.value = '';
-  linkInput.value = '';
+
+popupEdit.addEventListener('click', (evt) => {
+  closePopupByClick(evt, popupEdit);
 });
 
-closeImagePopup.addEventListener('click', () => {
-  closePopup(popupImage);
+popupAdd.addEventListener('click', (evt) => {
+  closePopupByClick(evt, popupAdd);
+
+});
+
+popupImage.addEventListener('click', (evt) => {
+  closePopupByClick(evt, popupImage);
 });
 
 editFormElement.addEventListener('submit', editFormSubmitHandler);
 addFormElement.addEventListener('submit', addFormSubmitHandler);
-
-popups.forEach( (popup) => {
-  popup.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup_opened')) {
-      closePopup(popup);
-    };
-  });
-});
