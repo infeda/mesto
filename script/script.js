@@ -61,10 +61,6 @@ const closePopupOnEsc = (evt, popupToClose) => {
 const closePopupByClick = (evt, popup) => {
   if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-icon')) {
     closePopup(popup);
-    if (popup.classList.contains('popup_add')) {
-      headingInput.value = '';
-      linkInput.value = '';
-    };
   };
 };
 
@@ -115,9 +111,6 @@ const addFormSubmitHandler = (evt) => {
 
   elements.prepend(createCard(cardInfo));
   
-  headingInput.value = '';
-  linkInput.value = '';
-  
   closePopup(popupAdd);
 };
 
@@ -128,8 +121,11 @@ enableValidation(config);
 editButton.addEventListener('click', () => {
   openProfilePopup();
 });
+
 addButton.addEventListener('click', () => {
   openPopup(popupAdd);
+  headingInput.value = '';
+  linkInput.value = '';
   resetValidation(popupAdd, config);
 });
 
@@ -139,7 +135,6 @@ popupEdit.addEventListener('click', (evt) => {
 
 popupAdd.addEventListener('click', (evt) => {
   closePopupByClick(evt, popupAdd);
-
 });
 
 popupImage.addEventListener('click', (evt) => {
