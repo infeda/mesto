@@ -30,10 +30,12 @@ const imageOfPopupImage = popupImage.querySelector('.popup-container-image__imag
 const headingOfPopupImage = popupImage.querySelector('.popup-container-image__heading');
 
 class Card {
-  constructor(name, url, templateSelector) {
+  constructor(name, url, templateSelector, openPopupImage) {
     this._imageUrl = url;
     this._cardName = name;
     this._cardTemplate = templateSelector;
+
+    this._openPopupImage = openPopupImage;
   }
 
   _getTemplate() {
@@ -56,7 +58,7 @@ class Card {
     });
 
     this._element.querySelector('.card__image').addEventListener('click', () => {
-      openPopupImage(elem.link, elem.name);
+      this._handleImageClick();
     });
   }
 
@@ -66,6 +68,10 @@ class Card {
 
   _handleDeleteItemClick() {
     this._element.querySelector('.card__delete').parentElement.remove();
+  }
+
+  _handleImageClick() {
+    this._openPopupImage(this._imageUrl, this._cardName);
   }
 
   createCard() {
@@ -84,10 +90,25 @@ class Card {
   }
 };
 
+const openPopup = (popupToOpen) => {
+  popupToOpen.classList.add('popup_opened');
+  document.addEventListener('keydown', (evt) => {
+    closePopupOnEsc(evt, popupToOpen);
+  });
+};
+
+const openPopupImage = (imageSrc, imageHeading) => {
+  imageOfPopupImage.src = imageSrc;
+  headingOfPopupImage.textContent = imageHeading;
+  imageOfPopupImage.alt = imageHeading;
+  openPopup(popupImage);
+};
+
 initialCards.forEach(elem => {
-  const card = new Card(elem.name, elem.link, '#card-template');
+  const card = new Card(elem.name, elem.link, '#card-template', openPopupImage);
   elements.append(card.createCard());
 });
+
 
 
 
@@ -103,12 +124,6 @@ const closePopupByClick = (evt, popup) => {
   };
 };
 
-const openPopup = (popupToOpen) => {
-  popupToOpen.classList.add('popup_opened');
-  document.addEventListener('keydown', (evt) => {
-    closePopupOnEsc(evt, popupToOpen);
-  });
-};
 
 const closePopup = (popupToClose) => {
   popupToClose.classList.remove('popup_opened');
@@ -117,12 +132,7 @@ const closePopup = (popupToClose) => {
   });
 };
 
-const openPopupImage = (imageSrc, imageHeading) => {
-  openPopup(popupImage);
-  imageOfPopupImage.src = imageSrc;
-  headingOfPopupImage.textContent = imageHeading;
-  imageOfPopupImage.alt = imageHeading;
-};
+
 
 const openProfilePopup = () => {
   openPopup(popupEdit);

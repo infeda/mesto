@@ -1,5 +1,5 @@
 class FormValidator {
-  constructor(config, formSelector) {
+  constructor(config, formElement) {
     this._formSelector = config.formSelector;
     this._inputSelector = config.inputSelector;
     this._submitButtonSelector = config.submitButtonSelector;
@@ -7,30 +7,24 @@ class FormValidator {
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
 
-    this._formSelector = formSelector;
-  }
-
-  _getForm() {
-    const formElement = document.querySelector(this._formSelector);
     this._formElement = formElement;
   }
 
+  // _getFormElement() {
+  //   const formElement = document.querySelector(this._formSelector);
+  //   this._formElement = formElement;
+  // }
+
   _setEventListeners() {
-
-  }
-
-
-  const setEventListeners = (formElement, config) => {
-    const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
-    const buttonElement = formElement.querySelector(config.submitButtonSelector);
-    inputList.forEach((inputElement) => {
-      inputElement.addEventListener('input', () => {
-        isValid(formElement, inputElement, config);
-        toggleButtonState(inputList, buttonElement, config);
+    const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+      inputList.forEach((inputElement) => {
+        inputElement.addEventListener('input', () => {
+          isValid(formElement, inputElement, config);
+          toggleButtonState(inputList, buttonElement, config);
+        });
       });
-    });
-  };
-
+    };
 
 }
 
