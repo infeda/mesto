@@ -77,10 +77,7 @@ class Card {
   createCard() {
     this._getTemplate();
     this._setEventListeners();
-    const cardImage = document
-      .querySelector(this._cardTemplate)
-      .content
-      .querySelector('.card__image');
+    const cardImage = this._element.querySelector('.card__image');
 
     this._element.querySelector('.card__heading').textContent = this._cardName;
     cardImage.src = this._imageUrl;
