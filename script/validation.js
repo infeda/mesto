@@ -1,3 +1,42 @@
+class FormValidator {
+  constructor(config, formSelector) {
+    this._formSelector = config.formSelector;
+    this._inputSelector = config.inputSelector;
+    this._submitButtonSelector = config.submitButtonSelector;
+    this._inactiveButtonClass = config.inactiveButtonClass;
+    this._inputErrorClass = config.inputErrorClass;
+    this._errorClass = config.errorClass;
+
+    this._formSelector = formSelector;
+  }
+
+  _getForm() {
+    const formElement = document.querySelector(this._formSelector);
+    this._formElement = formElement;
+  }
+
+  _setEventListeners() {
+
+  }
+
+
+  const setEventListeners = (formElement, config) => {
+    const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+    const buttonElement = formElement.querySelector(config.submitButtonSelector);
+    inputList.forEach((inputElement) => {
+      inputElement.addEventListener('input', () => {
+        isValid(formElement, inputElement, config);
+        toggleButtonState(inputList, buttonElement, config);
+      });
+    });
+  };
+
+
+}
+
+
+
+
 const showInputError = (formElement, inputElement, errorMessage, config) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   

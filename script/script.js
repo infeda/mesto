@@ -29,28 +29,67 @@ const cardTemplate = document.querySelector('#card-template').content;
 const imageOfPopupImage = popupImage.querySelector('.popup-container-image__image');
 const headingOfPopupImage = popupImage.querySelector('.popup-container-image__heading');
 
-const createCard = (elem) => {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImage = cardElement.querySelector('.card__image');
+class Card {
+  constructor(name, url, templateSelector) {
+    this._imageUrl = url;
+    this._cardName = name;
+    this._cardTemplate = templateSelector;
+  }
+
+  _getTemplate() {
+    const cardElement = document
+      .querySelector(this._cardTemplate)
+      .content
+      .children[0]
+      .cloneNode(true);
+
+    this._element = cardElement;
+  }
+
+  _setEventListeners() {
+    this._element.querySelector('.card__like').addEventListener('click', () => {
+      this._handleLikeClick();
+    });
   
-  cardElement.querySelector('.card__heading').textContent = elem.name;
-  cardImage.src = elem.link;
-  cardImage.setAttribute('alt', elem.name);
+    this._element.querySelector('.card__delete').addEventListener('click', () => {
+      this._handleDeleteItemClick();
+    });
 
-  cardElement.querySelector('.card__like').addEventListener('click', function(evt) {
-    evt.target.classList.toggle('card__like_active');
-  });
+    this._element.querySelector('.card__image').addEventListener('click', () => {
+      openPopupImage(elem.link, elem.name);
+    });
+  }
 
-  cardElement.querySelector('.card__delete').addEventListener('click', function(evt) {
-    evt.target.parentElement.remove();
-  });
+  _handleLikeClick() {
+    this._element.querySelector('.card__like').classList.toggle('card__like_active');
+  }
 
-  cardImage.addEventListener('click', function() {
-    openPopupImage(elem.link, elem.name);
-  });
+  _handleDeleteItemClick() {
+    this._element.querySelector('.card__delete').parentElement.remove();
+  }
 
-  return cardElement;
+  createCard() {
+    this._getTemplate();
+    this._setEventListeners();
+    const cardImage = document
+      .querySelector(this._cardTemplate)
+      .content
+      .querySelector('.card__image');
+
+    this._element.querySelector('.card__heading').textContent = this._cardName;
+    cardImage.src = this._imageUrl;
+    cardImage.setAttribute('alt', this._cardName);
+
+    return this._element;
+  }
 };
+
+initialCards.forEach(elem => {
+  const card = new Card(elem.name, elem.link, '#card-template');
+  elements.append(card.createCard());
+});
+
+
 
 const closePopupOnEsc = (evt, popupToClose) => {
   if (evt.key === "Escape") {
@@ -114,7 +153,6 @@ const addFormSubmitHandler = (evt) => {
   closePopup(popupAdd);
 };
 
-initialCards.forEach(elem => elements.append(createCard(elem)) );
 
 enableValidation(config);
 
