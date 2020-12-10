@@ -6,6 +6,7 @@ const config = {
   inputErrorClass: 'popup-container__form-item_type_error',
   errorClass: 'popup-container__form-item-error-active'
 };
+
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const closeEditPopup = document.querySelector('.popup__close-button_popup_edit');
@@ -87,6 +88,10 @@ class Card {
   }
 };
 
+
+
+
+
 const openPopup = (popupToOpen) => {
   popupToOpen.classList.add('popup_opened');
   document.addEventListener('keydown', (evt) => {
@@ -135,7 +140,7 @@ const openProfilePopup = () => {
   openPopup(popupEdit);
   nameInput.value = namePlace.textContent;
   jobInput.value = jobPlace.textContent;
-  resetValidation(popupEdit, config);
+  // editFormValidator.resetValidation(editFormElement, config);
 };
 
 const editFormSubmitHandler = (evt) => {
@@ -161,7 +166,7 @@ const addFormSubmitHandler = (evt) => {
 };
 
 
-enableValidation(config);
+// enableValidation(config);
 
 editButton.addEventListener('click', () => {
   openProfilePopup();
@@ -171,7 +176,7 @@ addButton.addEventListener('click', () => {
   openPopup(popupAdd);
   headingInput.value = '';
   linkInput.value = '';
-  resetValidation(popupAdd, config);
+  // addFormValidator._resetValidation(addFormElement, config);
 });
 
 popupEdit.addEventListener('click', (evt) => {
