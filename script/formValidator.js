@@ -85,7 +85,6 @@ class FormValidator {
   }
 }
 
-const editFormValidator = new FormValidator(config, editFormElement);
-editFormValidator.enableValidation();
-const addFormValidator = new FormValidator(config, addFormElement);
-addFormValidator.enableValidation();
+
+
+export { FormValidator };

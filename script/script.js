@@ -1,3 +1,7 @@
+import { Card } from './card.js';
+import { FormValidator } from './formValidator.js';
+import { initialCards } from './initial-card.js'; 
+
 const config = {
   formSelector: '.popup-container__form',
   inputSelector: '.popup-container__form-item',
@@ -30,68 +34,7 @@ const cardTemplate = document.querySelector('#card-template').content;
 const imageOfPopupImage = popupImage.querySelector('.popup-container-image__image');
 const headingOfPopupImage = popupImage.querySelector('.popup-container-image__heading');
 
-class Card {
-  constructor(name, url, templateSelector, openPopupImage) {
-    this._imageUrl = url;
-    this._cardName = name;
-    this._cardTemplate = templateSelector;
-
-    this._openPopupImage = openPopupImage;
-  }
-
-  _getTemplate() {
-    const cardElement = document
-      .querySelector(this._cardTemplate)
-      .content
-      .children[0]
-      .cloneNode(true);
-
-    this._element = cardElement;
-  }
-
-  _setEventListeners() {
-    this._element.querySelector('.card__like').addEventListener('click', () => {
-      this._handleLikeClick();
-    });
   
-    this._element.querySelector('.card__delete').addEventListener('click', () => {
-      this._handleDeleteItemClick();
-    });
-
-    this._element.querySelector('.card__image').addEventListener('click', () => {
-      this._handleImageClick();
-    });
-  }
-
-  _handleLikeClick() {
-    this._element.querySelector('.card__like').classList.toggle('card__like_active');
-  }
-
-  _handleDeleteItemClick() {
-    this._element.querySelector('.card__delete').parentElement.remove();
-  }
-
-  _handleImageClick() {
-    this._openPopupImage(this._imageUrl, this._cardName);
-  }
-
-  createCard() {
-    this._getTemplate();
-    this._setEventListeners();
-    const cardImage = this._element.querySelector('.card__image');
-
-    this._element.querySelector('.card__heading').textContent = this._cardName;
-    cardImage.src = this._imageUrl;
-    cardImage.setAttribute('alt', this._cardName);
-
-    return this._element;
-  }
-};
-
-
-
-
-
 const openPopup = (popupToOpen) => {
   popupToOpen.classList.add('popup_opened');
   document.addEventListener('keydown', (evt) => {
@@ -111,7 +54,10 @@ initialCards.forEach(elem => {
   elements.append(card.createCard());
 });
 
-
+const editFormValidator = new FormValidator(config, editFormElement);
+editFormValidator.enableValidation();
+const addFormValidator = new FormValidator(config, addFormElement);
+addFormValidator.enableValidation();
 
 
 const closePopupOnEsc = (evt, popupToClose) => {
@@ -126,7 +72,6 @@ const closePopupByClick = (evt, popup) => {
   };
 };
 
-
 const closePopup = (popupToClose) => {
   popupToClose.classList.remove('popup_opened');
   document.removeEventListener('keydown', (evt) => {
@@ -134,13 +79,11 @@ const closePopup = (popupToClose) => {
   });
 };
 
-
-
 const openProfilePopup = () => {
   openPopup(popupEdit);
   nameInput.value = namePlace.textContent;
   jobInput.value = jobPlace.textContent;
-  // editFormValidator.resetValidation(editFormElement, config);
+  editFormValidator.enableValidation(config, editFormElement);
 };
 
 const editFormSubmitHandler = (evt) => {
@@ -160,13 +103,12 @@ const addFormSubmitHandler = (evt) => {
     link: linkInput.value
   };
 
-  elements.prepend(createCard(cardInfo));
+  const newCard = new Card(cardInfo.name, cardInfo.link, '#card-template', openPopupImage);
+
+  elements.prepend(newCard.createCard());
   
   closePopup(popupAdd);
 };
-
-
-// enableValidation(config);
 
 editButton.addEventListener('click', () => {
   openProfilePopup();
@@ -176,7 +118,7 @@ addButton.addEventListener('click', () => {
   openPopup(popupAdd);
   headingInput.value = '';
   linkInput.value = '';
-  // addFormValidator._resetValidation(addFormElement, config);
+  addFormValidator.enableValidation(config, addFormElement);
 });
 
 popupEdit.addEventListener('click', (evt) => {
