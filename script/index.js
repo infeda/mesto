@@ -40,6 +40,7 @@ const openPopup = (popupToOpen) => {
   document.addEventListener('keydown', (evt) => {
     closePopupOnEsc(evt, popupToOpen);
   });
+  addFormValidator.resetValidation();
 };
 
 const openPopupImage = (imageSrc, imageHeading) => {
@@ -48,17 +49,6 @@ const openPopupImage = (imageSrc, imageHeading) => {
   imageOfPopupImage.alt = imageHeading;
   openPopup(popupImage);
 };
-
-initialCards.forEach(elem => {
-  const card = new Card(elem.name, elem.link, '#card-template', openPopupImage);
-  elements.append(card.createCard());
-});
-
-const editFormValidator = new FormValidator(config, editFormElement);
-editFormValidator.enableValidation();
-const addFormValidator = new FormValidator(config, addFormElement);
-addFormValidator.enableValidation();
-
 
 const closePopupOnEsc = (evt, popupToClose) => {
   if (evt.key === "Escape") {
@@ -77,13 +67,14 @@ const closePopup = (popupToClose) => {
   document.removeEventListener('keydown', (evt) => {
     closePopupOnEsc(evt, popupToClose);
   });
+
 };
 
 const openProfilePopup = () => {
   openPopup(popupEdit);
   nameInput.value = namePlace.textContent;
   jobInput.value = jobPlace.textContent;
-  editFormValidator.enableValidation(config, editFormElement);
+  editFormValidator.resetValidation();
 };
 
 const editFormSubmitHandler = (evt) => {
@@ -109,6 +100,16 @@ const addFormSubmitHandler = (evt) => {
   
   closePopup(popupAdd);
 };
+
+initialCards.forEach(elem => {
+  const card = new Card(elem.name, elem.link, '#card-template', openPopupImage);
+  elements.append(card.createCard());
+});
+
+const editFormValidator = new FormValidator(config, editFormElement);
+editFormValidator.enableValidation();
+const addFormValidator = new FormValidator(config, addFormElement);
+addFormValidator.enableValidation();
 
 editButton.addEventListener('click', () => {
   openProfilePopup();

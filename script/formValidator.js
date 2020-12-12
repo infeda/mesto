@@ -25,7 +25,7 @@ class FormValidator {
 
     this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this._resetValidation();
+      this.resetValidation();
     });
   };
 
@@ -67,7 +67,7 @@ class FormValidator {
     });
   };
 
-  _resetValidation() {
+  resetValidation() {
     const errors = this._formElement.querySelectorAll(this._inputErrorClass);
     const inputs = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     errors.forEach((error) => {
@@ -84,7 +84,5 @@ class FormValidator {
     this._setEventListeners();
   }
 }
-
-
 
 export { FormValidator };
