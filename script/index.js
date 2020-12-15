@@ -1,5 +1,5 @@
-import { Card } from './card.js';
-import { FormValidator } from './formValidator.js';
+import Card from './components/Card.js';
+import FormValidator from './components/FormValidator.js';
 import { initialCards } from './initial-card.js'; 
 
 const config = {
@@ -13,10 +13,6 @@ const config = {
 
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
-const closeEditPopup = document.querySelector('.popup__close-button_popup_edit');
-const closeAddPopup = document.querySelector('.popup__close-button_popup_add');
-const closeImagePopup = document.querySelector('.popup__close-button_popup_image');
-const popups = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_edit');
 const popupAdd = document.querySelector('.popup_add');
 const popupImage = document.querySelector('.popup_image');
@@ -26,20 +22,19 @@ const headingInput = document.querySelector('.popup-container__form-item_el_head
 const linkInput = document.querySelector('.popup-container__form-item_el_link');
 const namePlace = document.querySelector('.profile__header');
 const jobPlace = document.querySelector('.profile__subheader');
-const popupHeading = document.querySelector('.popup-container__heading');
 const editFormElement = document.querySelector('.popup-container__form_edit');
 const addFormElement = document.querySelector('.popup-container__form_add');
 const elements = document.querySelector('.elements');
-const cardTemplate = document.querySelector('#card-template').content;
 const imageOfPopupImage = popupImage.querySelector('.popup-container-image__image');
 const headingOfPopupImage = popupImage.querySelector('.popup-container-image__heading');
 
   
+let esc = null;
+
 const openPopup = (popupToOpen) => {
   popupToOpen.classList.add('popup_opened');
-  document.addEventListener('keydown', (evt) => {
-    closePopupOnEsc(evt, popupToOpen);
-  });
+  esc = (evt) => closePopupOnEsc(evt, popupToOpen);
+  document.addEventListener('keydown', esc);
   addFormValidator.resetValidation();
 };
 
@@ -53,21 +48,19 @@ const openPopupImage = (imageSrc, imageHeading) => {
 const closePopupOnEsc = (evt, popupToClose) => {
   if (evt.key === "Escape") {
     closePopup(popupToClose);
-  };
+  }
 };
 
 const closePopupByClick = (evt, popup) => {
   if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-icon')) {
     closePopup(popup);
-  };
+  }
 };
 
 const closePopup = (popupToClose) => {
   popupToClose.classList.remove('popup_opened');
-  document.removeEventListener('keydown', (evt) => {
-    closePopupOnEsc(evt, popupToClose);
-  });
-
+  document.removeEventListener('keydown', esc);
+  esc = null;
 };
 
 const openProfilePopup = () => {
@@ -77,32 +70,26 @@ const openProfilePopup = () => {
   editFormValidator.resetValidation();
 };
 
-const editFormSubmitHandler = (evt) => {
-  evt.preventDefault();
-
+const editFormSubmitHandler = () => {
   namePlace.textContent = nameInput.value;
   jobPlace.textContent = jobInput.value;
   
   closePopup(popupEdit);
 };
 
+const newCard = (headingValue, linkValue) => {
+  return new Card(headingValue, linkValue, '#card-template', openPopupImage);
+}
+
 const addFormSubmitHandler = (evt) => {
-  evt.preventDefault();
-
-  const cardInfo = {
-    name: headingInput.value,
-    link: linkInput.value
-  };
-
-  const newCard = new Card(cardInfo.name, cardInfo.link, '#card-template', openPopupImage);
-
-  elements.prepend(newCard.createCard());
+  const card = newCard(headingInput.value, linkInput.value);
+  elements.prepend(card.createCard());
   
   closePopup(popupAdd);
 };
 
 initialCards.forEach(elem => {
-  const card = new Card(elem.name, elem.link, '#card-template', openPopupImage);
+  const card = newCard(elem.name, elem.link);
   elements.append(card.createCard());
 });
 
@@ -116,10 +103,9 @@ editButton.addEventListener('click', () => {
 });
 
 addButton.addEventListener('click', () => {
-  openPopup(popupAdd);
   headingInput.value = '';
   linkInput.value = '';
-  addFormValidator.enableValidation(config, addFormElement);
+  openPopup(popupAdd);
 });
 
 popupEdit.addEventListener('click', (evt) => {

@@ -17,9 +17,9 @@
   }
 }
 
-.popup-container__form-item:invalid {
+/* .popup-container__form-item_invalid {
   border-bottom: 1px solid #ff0000;
-}
+} */
 
 .popup-container__form-item:required {
   box-shadow: none;
