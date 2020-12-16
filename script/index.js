@@ -55,9 +55,9 @@ const closePopup = (popupToClose) => {
 };
 
 const openProfilePopup = () => {
-  openPopup(popupEdit);
   nameInput.value = namePlace.textContent;
   jobInput.value = jobPlace.textContent;
+  openPopup(popupEdit);
   editFormValidator.resetValidation();
 };
 
