@@ -1,15 +1,7 @@
 import Card from './components/Card.js';
 import FormValidator from './components/FormValidator.js';
-import { initialCards } from './initial-card.js'; 
+import { initialCards, config } from './utils.js'; 
 
-const config = {
-  formSelector: '.popup-container__form',
-  inputSelector: '.popup-container__form-item',
-  submitButtonSelector: '.popup-container__submit-button',
-  inactiveButtonClass: 'popup-container__submit-button_inactive',
-  inputErrorClass: 'popup-container__form-item_type_error',
-  errorClass: 'popup-container__form-item-error-active'
-};
 
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
@@ -28,7 +20,6 @@ const elements = document.querySelector('.elements');
 const imageOfPopupImage = popupImage.querySelector('.popup-container-image__image');
 const headingOfPopupImage = popupImage.querySelector('.popup-container-image__heading');
 
-  
 let esc = null;
 
 const openPopup = (popupToOpen) => {
@@ -73,28 +64,28 @@ const openProfilePopup = () => {
 const editFormSubmitHandler = () => {
   namePlace.textContent = nameInput.value;
   jobPlace.textContent = jobInput.value;
-  
   closePopup(popupEdit);
 };
 
 const newCard = (headingValue, linkValue) => {
-  return new Card(headingValue, linkValue, '#card-template', openPopupImage);
-}
+  const card = new Card(headingValue, linkValue, '#card-template', openPopupImage);
+  return card.createCard();
+};
 
-const addFormSubmitHandler = (evt) => {
+const addFormSubmitHandler = () => {
   const card = newCard(headingInput.value, linkInput.value);
   elements.prepend(card.createCard());
-  
   closePopup(popupAdd);
 };
 
 initialCards.forEach(elem => {
   const card = newCard(elem.name, elem.link);
-  elements.append(card.createCard());
+  elements.append(card);
 });
 
 const editFormValidator = new FormValidator(config, editFormElement);
 editFormValidator.enableValidation();
+
 const addFormValidator = new FormValidator(config, addFormElement);
 addFormValidator.enableValidation();
 

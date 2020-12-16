@@ -8,16 +8,12 @@ export default class FormValidator {
     this._errorClass = config.errorClass;
 
     this._formElement = formElement;
-    this._inputs = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+    this._errors = this._formElement.querySelectorAll(this._inputErrorClass);
   }
 
   _setEventListeners() {
-    const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-    this._inputList = inputList;
-    this._buttonElement = buttonElement;
-
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._isValid(inputElement);
@@ -72,12 +68,12 @@ export default class FormValidator {
   };
 
   resetValidation() {
-    const errors = this._formElement.querySelectorAll(this._inputErrorClass);
-    errors.forEach((error) => {
+    
+    this._errors.forEach((error) => {
       error.classList.remove(this._errorClass);
       this._hideInputError(form, input);
     });
-    this._inputs.forEach((inputElement) => {
+    this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
       inputElement.classList.remove('popup-container__form-item_invalid');
     });
