@@ -74,7 +74,7 @@ const newCard = (headingValue, linkValue) => {
 
 const addFormSubmitHandler = () => {
   const card = newCard(headingInput.value, linkInput.value);
-  elements.prepend(card.createCard());
+  elements.prepend(card);
   closePopup(popupAdd);
 };
 
