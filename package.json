@@ -1,0 +1,19 @@
+{
+  "name": "mesto",
+  "version": "0.0.1",
+  "description": "[Ссылка на GitHub Page](https://infeda.github.io/mesto/)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/infeda/mesto.git"
+  },
+  "author": "Ingrida Fedaraviciute",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/infeda/mesto/issues"
+  },
+  "homepage": "https://github.com/infeda/mesto#readme"
+}
