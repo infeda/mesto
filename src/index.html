@@ -5,28 +5,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место</title>
-  <link rel="stylesheet" href="./pages/index.css">
 </head>
 
 <body class="root">
   <div class="page">
     <header class="header">
-      <img class="header__logo" src="./images/logo__header.svg" alt="голова-логотип">
+      <img class="header__logo" src="<%=require('./images/logo__header.svg')%>" alt="голова-логотип">
     </header>
     <main class="content">
       <div class="profile">
-        <img class="profile__avatar" src="./images/profile-avatar.jpg" alt="профиль-аватар">
+        <img class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>" alt="профиль-аватар">
         <div class="profile__info">
           <div class="profile__heading-line">
             <h1 class="profile__header">Жак-Ив Кусто</h1>
             <button class="profile__edit-button" type="button" name="edit-button">
-              <img class="profile__edit-image" src="./images/edit-button__pen.svg" alt="кнопка-редактирования">
+              <img class="profile__edit-image" src="<%=require('./images/edit-button__pen.svg')%>" alt="кнопка-редактирования">
             </button>
           </div>
           <p class="profile__subheader">Исследователь океана</p>
         </div>
         <button class="profile__add-button" type="button" name="add-button">
-          <img class="profile__add-button-image" src="./images/add-button.svg" alt="кнопка добавить">
+          <img class="profile__add-button-image" src="<%=require('./images/add-button.svg')%>" alt="кнопка добавить">
         </button>
       </div>
       <section class="elements">
@@ -36,7 +35,7 @@
         <div class="popup-container">
           <button class="popup__close-button popup__close-button_popup_edit" type="button"
             name="close-edit-popup">
-            <img class="popup__close-icon" src="./images/Close-Icon.svg" alt="закрыть">
+            <img class="popup__close-icon" src="<%=require('./images/Close-Icon.svg')%>" alt="закрыть">
           </button>
           <h2 class="popup-container__heading">Редактировать профиль</h2>
           <form class="popup-container__form popup-container__form_edit" name="popup-form-edit">
@@ -62,7 +61,7 @@
         <div class="popup-container">
           <button class="popup__close-button popup__close-button_popup_add" type="button"
             name="close-add-popup">
-            <img class="popup__close-icon" src="./images/Close-Icon.svg" alt="закрыть">
+            <img class="popup__close-icon" src="<%=require('./images/Close-Icon.svg')%>" alt="закрыть">
           </button>
           <h2 class="popup-container__heading">Новое место</h2>
           <form class="popup-container__form popup-container__form_add" name="popup-form-add">
@@ -88,7 +87,7 @@
         <div class="popup-container-image">
           <button class="popup__close-button popup__close-button_popup_image" type="button"
             name="close-image-popup">
-            <img class="popup__close-icon" src="./images/Close-Icon.svg" alt="закрыть">
+            <img class="popup__close-icon" src="<%=require('./images/Close-Icon.svg')%>" alt="закрыть">
           </button>
           <img class="popup-container-image__image" src="//:0" alt="null">
           <h2 class="popup-container-image__heading"></h2>
