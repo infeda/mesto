@@ -8,23 +8,29 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues () {
-    return [
-      this._popup.querySelector('.popup-container__form-item_el_name').value, 
-      this._popup.querySelector('.popup-container__form-item_el_text').value
-    ]
+      return Array.from(this._popup.querySelectorAll('.popup-container__form-item')).map(elem => elem.value);
   }
 
   setEventListeners () {
-    this._popup.addEventListener('submit', () => {
-      const [firstInputValue, secondInputValue] = this._getInputValues();
-      this._submitForm(firstInputValue, secondInputValue);
+    
+    this._submit = () => {
+      this._submitForm(this._getInputValues());
       this.close();
-    });
+    }
+
+    this._popup.addEventListener('submit', this._submit);
     super.setEventListeners();
   };
 
-  close () {
-    super.close();
+  open () {
     this._resetValidation();
+    super.open();
+  }
+
+  close () {
+    this._resetValidation();
+
+    super.close();
+    this._popup.removeEventListener('submit', this._submit);
   }
 }
