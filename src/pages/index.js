@@ -35,47 +35,36 @@ const editFormPopup = new PopupWithForm (
     () => { editFormValidator.resetValidation() }
 );
 
-const addFormPopup = new PopupWithForm (
+const render = new Section(
   {
-    popupSelector: '.popup_add',
-    submitForm: (arr) => {
-      const item = [];
-      item[0] = {
-        name: arr[0],
-        link: arr[1]
-      };
-      const section = new Section(
-        {
-          items: item,
-          renderer: (item) => {
-            const popupWithImage = new PopupWithImage(item, '.popup_image');
-            const card = new Card(item, '#card-template', () => { popupWithImage.open() });
-            const cardElement = card.createCard();
-            section.addItem(cardElement);
-          }
-        },
-        '.elements'
-      );
-      section.renderElements();
-    }
-  },
-  () => { addFormValidator.resetValidation() }
-);
-
-const cardList = new Section(
-  {
-    items: initialCards,
     renderer: (item) => {
       const popupWithImage = new PopupWithImage(item, '.popup_image');
       const card = new Card(item, '#card-template', () => { popupWithImage.open() });
       const cardElement = card.createCard();
-      cardList.addItem(cardElement);
+      render.addItem(cardElement);
     }
   },
   '.elements'
 );
 
-cardList.renderElements();
+const addFormPopup = new PopupWithForm (
+  {
+    popupSelector: '.popup_add',
+    submitForm: (arr) => {
+      const item = {
+        name: arr[0],
+        link: arr[1]
+      };
+      console.log(item);
+      render.renderElements(item);
+    }
+  },
+  () => { addFormValidator.resetValidation() }
+);
+
+initialCards.forEach(item => {
+  render.renderElements(item);
+});
 
 editButton.addEventListener('click', () => {
   [nameInput.value, jobInput.value] = user.getUserInfo();
