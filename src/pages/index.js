@@ -24,17 +24,6 @@ addFormValidator.enableValidation();
 
 const user = new UserInfo('.profile__header', '.profile__subheader');
 
-const editFormPopup = new PopupWithForm (
-  {
-    popupSelector: '.popup_edit',
-    submitForm: (values) => 
-      {
-        user.setUserInfo(values);
-      }
-  },
-    () => { editFormValidator.resetValidation() }
-);
-
 const render = new Section(
   {
     renderer: (item) => {
@@ -47,6 +36,17 @@ const render = new Section(
   '.elements'
 );
 
+const editFormPopup = new PopupWithForm (
+  {
+    popupSelector: '.popup_edit',
+    submitForm: (values) => 
+      {
+        user.setUserInfo(values);
+      }
+  },
+    () => { editFormValidator.resetValidation() }
+);
+
 const addFormPopup = new PopupWithForm (
   {
     popupSelector: '.popup_add',
@@ -55,7 +55,6 @@ const addFormPopup = new PopupWithForm (
         name: arr[0],
         link: arr[1]
       };
-      console.log(item);
       render.renderElements(item);
     }
   },
