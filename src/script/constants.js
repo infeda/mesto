@@ -31,15 +31,14 @@ const config = {
   submitButtonSelector: '.popup-container__submit-button',
   inactiveButtonClass: 'popup-container__submit-button_inactive',
   inputErrorClass: 'popup-container__form-item_type_error',
-  errorClass: 'popup-container__form-item-error-active'
+  errorClass: 'popup-container__form-item-error-active',
+  invalidInputClass: 'popup-container__form-item_invalid'
 };
 
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const nameInput = document.querySelector('.popup-container__form-item_el_name');
 const jobInput = document.querySelector('.popup-container__form-item_el_text');
-const headingInput = document.querySelector('.popup-container__form-item_el_heading');
-const linkInput = document.querySelector('.popup-container__form-item_el_link');
 const editFormElement = document.querySelector('.popup-container__form_edit');
 const addFormElement = document.querySelector('.popup-container__form_add');
   

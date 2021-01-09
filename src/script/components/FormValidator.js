@@ -6,6 +6,7 @@ export default class FormValidator {
     this._inactiveButtonClass = config.inactiveButtonClass;
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
+    this._invalidInputClass = config.invalidInputClass;
 
     this._formElement = formElement;
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
@@ -31,10 +32,10 @@ export default class FormValidator {
   _isValid(inputElement) {
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement, inputElement.validationMessage);
-      inputElement.classList.add('popup-container__form-item_invalid');
+      inputElement.classList.add(this._invalidInputClass);
     } else {
       this._hideInputError(inputElement);
-      inputElement.classList.remove('popup-container__form-item_invalid');
+      inputElement.classList.remove(this._invalidInputClass);
     };
   };
 
@@ -69,14 +70,9 @@ export default class FormValidator {
   };
 
   resetValidation() {
-    
-    this._errors.forEach((error) => {
-      error.classList.remove(this._errorClass);
-      this._hideInputError(form, input);
-    });
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
-      inputElement.classList.remove('popup-container__form-item_invalid');
+      inputElement.classList.remove(this._invalidInputClass);
     });
     this._toggleButtonState();
   };
