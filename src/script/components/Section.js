@@ -1,5 +1,3 @@
-import { initialCards } from "../constants";
-
 export default class Section {
   constructor ({ renderer }, containerSelector) {
     this._container = document.querySelector(containerSelector);
@@ -7,8 +5,7 @@ export default class Section {
   }
 
   renderElements (initialItems) {
-    this._initialItems = initialItems;
-    this._initialItems.forEach(item => {
+    initialItems.forEach(item => {
       this._renderer(item);
     });
   }

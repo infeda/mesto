@@ -9,35 +9,6 @@ import UserInfo from '../script/components/UserInfo.js';
 import Api from '../script/components/Api.js'
 
 
-// function getInitialCards() {
-//   fetch('https://mesto.nomoreparties.co/v1/cohort-19/cards', {
-//    headers: {
-//     authorization: '45595d98-1f05-41ff-b759-a22d91a48b67'
-//     }
-//   })
-//     .then(res => res.json())
-//     .then((result) => {
-//       console.log(result);
-//     });
-// } 
-
-// getInitialCards();
-
-// function getUserInfo() {
-//   fetch('https://mesto.nomoreparties.co/v1/cohort-19/users/me', {
-//     headers: {
-//       authorization: '45595d98-1f05-41ff-b759-a22d91a48b67',
-//       // 'Content-Type': 
-//       }
-//     })
-//       .then(res => res.json())
-//       .then((result) => {
-//         console.log(result);
-//       });
-// }
-
-// getUserInfo();
-
 const editFormValidator = new FormValidator(config, editFormElement);
 editFormValidator.enableValidation();
 
@@ -48,6 +19,8 @@ const user = new UserInfo('.profile__header', '.profile__subheader');
 
 const popupWithImage = new PopupWithImage('.popup_image');
 popupWithImage.setEventListeners();
+
+
 
 function createCard(item) {
   const card = new Card(item, '#card-template', () => { popupWithImage.open(item) });
@@ -66,6 +39,7 @@ const cardsSection = new Section(
 );
 
 const api = new Api('https://mesto.nomoreparties.co/v1/cohort-19', '45595d98-1f05-41ff-b759-a22d91a48b67');
+
 api.getUserInfo()
   .then(res => {
     user.setUserInfo([res.name, res.about]);
@@ -77,16 +51,22 @@ api.getUserInfo()
 
 api.getInitialCards()
   .then(initialCards => {
-    console.log(initialCards);
     cardsSection.renderElements(initialCards);
-  })
+  });
+
 
 const editFormPopup = new PopupWithForm (
   {
     popupSelector: '.popup_edit',
     submitForm: (values) => 
       {
-        user.setUserInfo(values);
+        api.editUserInfo(values)
+          .then(values => {
+            user.setUserInfo(values);
+          })
+          .catch(err => {
+            console.log(err);
+          })
       }
   },
     () => { editFormValidator.resetValidation() }
@@ -102,16 +82,21 @@ const addFormPopup = new PopupWithForm (
         name: arr[0],
         link: arr[1]
       };
-      const cardElement = createCard(item);
-      cardsSection.addItem(cardElement);
+      
+      api.addNewCard(item.name, item.link)
+        .then(item => {
+          const cardElement = createCard(item);
+          cardsSection.addItem(cardElement);
+        })
+        .catch(err => {
+          console.log(err);
+        })
     }
   },
   () => { addFormValidator.resetValidation() }
 );
 
 addFormPopup.setEventListeners();
-
-cardsSection.renderElements();
 
 editButton.addEventListener('click', () => {
   [nameInput.value, jobInput.value] = user.getUserInfo();
