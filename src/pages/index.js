@@ -23,7 +23,17 @@ popupWithImage.setEventListeners();
 
 
 function createCard(item) {
-  const card = new Card(item, '#card-template', () => { popupWithImage.open(item) });
+  const card = new Card(item, '#card-template', '45595d98-1f05-41ff-b759-a22d91a48b67', {
+    handleCardClick: () => { popupWithImage.open(item) },
+    handleLikeClick: () => {
+      api.likeCard(item._id)
+        .then(cardInfo => {
+          console.log(cardInfo.likes);
+          card.setLikes(cardInfo.likes);
+        })
+    }
+  })
+   
   const cardElement = card.createCard();
   return cardElement;
 }
