@@ -1,13 +1,13 @@
 import { initialCards } from "../constants";
 
 export default class Section {
-  constructor ({initialItems, renderer }, containerSelector) {
+  constructor ({ renderer }, containerSelector) {
     this._container = document.querySelector(containerSelector);
     this._renderer = renderer;
-    this._initialItems = initialItems;
   }
 
-  renderElements () {
+  renderElements (initialItems) {
+    this._initialItems = initialItems;
     this._initialItems.forEach(item => {
       this._renderer(item);
     });

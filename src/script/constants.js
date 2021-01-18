@@ -42,4 +42,4 @@ const jobInput = document.querySelector('.popup-container__form-item_el_text');
 const editFormElement = document.querySelector('.popup-container__form_edit');
 const addFormElement = document.querySelector('.popup-container__form_add');
   
-export {initialCards, config, editButton, addButton, nameInput, jobInput, editFormElement, addFormElement };
+export {config, editButton, addButton, nameInput, jobInput, editFormElement, addFormElement };

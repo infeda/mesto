@@ -1,11 +1,42 @@
 import './index.css';
 import Card from '../script/components/Card.js';
 import FormValidator from '../script/components/FormValidator.js';
-import { initialCards, config, editButton, addButton, nameInput, jobInput, editFormElement, addFormElement } from '../script/constants.js'; 
+import { config, editButton, addButton, nameInput, jobInput, editFormElement, addFormElement } from '../script/constants.js'; 
 import Section from '../script/components/Section.js';
 import PopupWithImage from '../script/components/PopupWithImage.js';
 import PopupWithForm from '../script/components/PopupWithForm.js';
 import UserInfo from '../script/components/UserInfo.js';
+import Api from '../script/components/Api.js'
+
+
+// function getInitialCards() {
+//   fetch('https://mesto.nomoreparties.co/v1/cohort-19/cards', {
+//    headers: {
+//     authorization: '45595d98-1f05-41ff-b759-a22d91a48b67'
+//     }
+//   })
+//     .then(res => res.json())
+//     .then((result) => {
+//       console.log(result);
+//     });
+// } 
+
+// getInitialCards();
+
+// function getUserInfo() {
+//   fetch('https://mesto.nomoreparties.co/v1/cohort-19/users/me', {
+//     headers: {
+//       authorization: '45595d98-1f05-41ff-b759-a22d91a48b67',
+//       // 'Content-Type': 
+//       }
+//     })
+//       .then(res => res.json())
+//       .then((result) => {
+//         console.log(result);
+//       });
+// }
+
+// getUserInfo();
 
 const editFormValidator = new FormValidator(config, editFormElement);
 editFormValidator.enableValidation();
@@ -26,7 +57,6 @@ function createCard(item) {
 
 const cardsSection = new Section(
   {
-    initialItems: initialCards,
     renderer: (item) => {
       const cardElement = createCard(item);
       cardsSection.addItem(cardElement);
@@ -34,6 +64,22 @@ const cardsSection = new Section(
   },
   '.elements'
 );
+
+const api = new Api('https://mesto.nomoreparties.co/v1/cohort-19', '45595d98-1f05-41ff-b759-a22d91a48b67');
+api.getUserInfo()
+  .then(res => {
+    user.setUserInfo([res.name, res.about]);
+    user.setAvatar(res.avatar, '.profile__avatar');
+  }) 
+  .catch(err => {
+    console.log(err);
+  });
+
+api.getInitialCards()
+  .then(initialCards => {
+    console.log(initialCards);
+    cardsSection.renderElements(initialCards);
+  })
 
 const editFormPopup = new PopupWithForm (
   {

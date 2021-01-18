@@ -2,7 +2,8 @@
   grid-area: avatar;
   border-radius: 50%;
   width: 120px;
-  object-fit: contain;
+  min-height: 120px;
+  object-fit: cover;
   object-position: center;
   margin: 0 30px 0 0;
 }
