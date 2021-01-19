@@ -1,11 +1,11 @@
 export default class Card {
-  constructor(item, templateSelector, userId, {handleCardClick, handleLikeClick}) {
+  constructor(item, templateSelector, userId, {handleCardClick, handleLikeClick, handleDeleteLikeClick}) {
     this._item = item;
     this._cardTemplate = templateSelector;
     this._userId = userId;
-    // this._userId = userId;
     this._handleCardClick = handleCardClick;
     this._handleLikeClick = handleLikeClick;
+    this._handleDeleteLikeClick = handleDeleteLikeClick;
     // this._handleDeleteClick = handleDeleteClick;
   }
 
@@ -19,17 +19,17 @@ export default class Card {
 
   _setEventListeners() {
     this._cardLike.addEventListener('click', () => {
-      this._handleLikeClick();
+      if (!this._cardLike.classList.contains('card__like_active')) {
+        this._handleLikeClick();
+      } else {
+        this._handleDeleteLikeClick();
+      }
     });
   
     this._element.querySelector('.card__delete').addEventListener('click', this._handleDeleteItemClick.bind(this));
 
     this._cardImage.addEventListener('click', this._handleCardClick);
   }
-
-  // _toggleLikeColor() {
-  //   this._cardLike.classList.toggle('card__like_active');
-  // }
 
   _handleDeleteItemClick() {
     this._element.remove();
@@ -51,14 +51,17 @@ export default class Card {
     return this._element;
   }
 
+  _isLiked() {
+    this._cardLike.classList.contains('card__like_active') ? true : false;
+  }
+
   setLikes(likes) {
-    //метод принимает данные лайков карточки и обновляет отображение карточки. 
-    //Он используется при первой отрисовке карточки и при ответе сервера на установку и снятие лайка
     this._likesCounter.textContent = likes.length;
 
     if (Object.values(likes).some(like => like._id === "cf1634825f33decb2b0a89b7")) {
-      console.log('u like this');
       this._cardLike.classList.add('card__like_active');
-    };
+    } else {
+      this._cardLike.classList.remove('card__like_active');
+    }
   }
 };

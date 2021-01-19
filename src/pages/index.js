@@ -28,7 +28,12 @@ function createCard(item) {
     handleLikeClick: () => {
       api.likeCard(item._id)
         .then(cardInfo => {
-          console.log(cardInfo.likes);
+          card.setLikes(cardInfo.likes);
+        })
+      },
+    handleDeleteLikeClick: () => {
+      api.deleteLikeCard(item._id)
+        .then(cardInfo => {
           card.setLikes(cardInfo.likes);
         })
     }
