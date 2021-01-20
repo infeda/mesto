@@ -9,6 +9,8 @@ import PopupConfirm from '../script/components/PopupConfirm.js';
 import UserInfo from '../script/components/UserInfo.js';
 import Api from '../script/components/Api.js';
 
+let userId = null;
+
 const editFormValidator = new FormValidator(config, editFormElement);
 editFormValidator.enableValidation();
 
@@ -26,8 +28,9 @@ popupWithImage.setEventListeners();
 const popupConfirm = new PopupConfirm('.popup_delete');
 popupConfirm.setEventListeners();
 
+
 function createCard(item) {
-  const card = new Card(item, '#card-template', 'cf1634825f33decb2b0a89b7', {
+  const card = new Card(item, '#card-template', userId, {
     handleCardClick: () => { popupWithImage.open(item) },
     handleLikeClick: () => {
       api.likeCard(item._id)
@@ -76,20 +79,20 @@ const api = new Api({
   }
 });
 
-api.getUserInfo()
+
+Promise.all([
+  api.getUserInfo(),
+  api.getInitialCards()
+])
   .then(res => {
-    user.setUserInfo(res);
-    user.setAvatar(res.avatar, '.profile__avatar');
+    userId = res[0]._id;
+    user.setUserInfo(res[0]);
+    user.setAvatar(res[0].avatar, '.profile__avatar');
+    cardsSection.renderElements(res[1]);
   }) 
   .catch(err => {
     console.log(err);
-  });
-
-api.getInitialCards()
-  .then(initialCards => {
-    cardsSection.renderElements(initialCards);
-  });
-
+  })
 
 const editFormPopup = new PopupWithForm (
   {
