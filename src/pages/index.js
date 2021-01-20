@@ -5,9 +5,9 @@ import { config, editButton, addButton, nameInput, jobInput, editFormElement, ad
 import Section from '../script/components/Section.js';
 import PopupWithImage from '../script/components/PopupWithImage.js';
 import PopupWithForm from '../script/components/PopupWithForm.js';
+import PopupConfirm from '../script/components/PopupConfirm.js';
 import UserInfo from '../script/components/UserInfo.js';
-import Api from '../script/components/Api.js'
-
+import Api from '../script/components/Api.js';
 
 const editFormValidator = new FormValidator(config, editFormElement);
 editFormValidator.enableValidation();
@@ -20,10 +20,11 @@ const user = new UserInfo('.profile__header', '.profile__subheader');
 const popupWithImage = new PopupWithImage('.popup_image');
 popupWithImage.setEventListeners();
 
-
+const popupConfirm = new PopupConfirm('.popup_delete');
+popupConfirm.setEventListeners();
 
 function createCard(item) {
-  const card = new Card(item, '#card-template', '45595d98-1f05-41ff-b759-a22d91a48b67', {
+  const card = new Card(item, '#card-template', 'cf1634825f33decb2b0a89b7', {
     handleCardClick: () => { popupWithImage.open(item) },
     handleLikeClick: () => {
       api.likeCard(item._id)
@@ -36,8 +37,19 @@ function createCard(item) {
         .then(cardInfo => {
           card.setLikes(cardInfo.likes);
         })
-    }
-  })
+      },
+    handleDeleteClick: (cardId, element) => {
+      popupConfirm.setSubmitAction(() => {
+        api.deleteCard(cardId)
+          .then(() => {
+            element.remove();
+            popupConfirm.close();
+          })
+          .catch(err => console.log(err))
+      });
+      popupConfirm.open();
+      }
+  });
    
   const cardElement = card.createCard();
   return cardElement;
