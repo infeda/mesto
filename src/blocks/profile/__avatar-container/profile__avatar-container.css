@@ -4,6 +4,10 @@
     height: 120px;
   }
 
+  .profile__avatar-container:hover {
+    cursor: pointer;
+  }
+
   .profile__avatar-container:hover .profile__avatar {
     opacity: 0.2;
   }

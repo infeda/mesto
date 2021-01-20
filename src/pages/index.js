@@ -1,7 +1,7 @@
 import './index.css';
 import Card from '../script/components/Card.js';
 import FormValidator from '../script/components/FormValidator.js';
-import { config, editButton, addButton, nameInput, jobInput, editFormElement, addFormElement } from '../script/constants.js'; 
+import { config, editButton, addButton, nameInput, jobInput, editFormElement, addFormElement, editAvatarFormElement, editAvatarButton } from '../script/constants.js'; 
 import Section from '../script/components/Section.js';
 import PopupWithImage from '../script/components/PopupWithImage.js';
 import PopupWithForm from '../script/components/PopupWithForm.js';
@@ -14,6 +14,9 @@ editFormValidator.enableValidation();
 
 const addFormValidator = new FormValidator(config, addFormElement);
 addFormValidator.enableValidation();
+
+const editAvatarFormValidator = new FormValidator(config, editAvatarFormElement);
+editAvatarFormValidator.enableValidation();
 
 const user = new UserInfo('.profile__header', '.profile__subheader');
 
@@ -125,6 +128,24 @@ const addFormPopup = new PopupWithForm (
 
 addFormPopup.setEventListeners();
 
+const editAvatarPopup = new PopupWithForm (
+  {
+    popupSelector: '.popup_edit-avatar',
+    submitForm: (avatarLink) => {
+      api.editAvatar(avatarLink[0])
+        .then(res => {
+          document.querySelector('.profile__avatar').src = res.avatar;
+        })
+        .catch(err => console.log(err));
+    },
+  },
+  () => { editAvatarFormValidator.resetValidation() }
+);
+
+editAvatarPopup.setEventListeners();
+
+
+
 editButton.addEventListener('click', () => {
   [nameInput.value, jobInput.value] = user.getUserInfo();
   editFormPopup.open();
@@ -132,4 +153,8 @@ editButton.addEventListener('click', () => {
 
 addButton.addEventListener('click', () => {
   addFormPopup.open();
+});
+
+editAvatarButton.addEventListener('click', () => {
+  editAvatarPopup.open();
 });

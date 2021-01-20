@@ -37,9 +37,12 @@ const config = {
 
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
+const editAvatarButton = document.querySelector('.profile__avatar-container');
 const nameInput = document.querySelector('.popup-container__form-item_el_name');
 const jobInput = document.querySelector('.popup-container__form-item_el_text');
 const editFormElement = document.querySelector('.popup-container__form_edit');
 const addFormElement = document.querySelector('.popup-container__form_add');
+const editAvatarFormElement = document.querySelector('.popup-container__form_edit-avatar');
+
   
-export {config, editButton, addButton, nameInput, jobInput, editFormElement, addFormElement };
+export {config, editButton, addButton, nameInput, jobInput, editFormElement, addFormElement, editAvatarFormElement, editAvatarButton };
