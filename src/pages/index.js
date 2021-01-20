@@ -68,11 +68,17 @@ const cardsSection = new Section(
   '.elements'
 );
 
-const api = new Api('https://mesto.nomoreparties.co/v1/cohort-19', '45595d98-1f05-41ff-b759-a22d91a48b67');
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-19',
+  headers: {
+    authorization: '45595d98-1f05-41ff-b759-a22d91a48b67',
+    'Content-Type': 'application/json'
+  }
+});
 
 api.getUserInfo()
   .then(res => {
-    user.setUserInfo([res.name, res.about]);
+    user.setUserInfo(res);
     user.setAvatar(res.avatar, '.profile__avatar');
   }) 
   .catch(err => {
@@ -91,12 +97,15 @@ const editFormPopup = new PopupWithForm (
     submitForm: (values) => 
       {
         api.editUserInfo(values)
-          .then(values => {
-            user.setUserInfo(values);
+          .then(info => {
+            user.setUserInfo(info);
           })
           .catch(err => {
             console.log(err);
           })
+          .finally(() => {
+            document.querySelector('.popup_edit').querySelector(config.submitButtonSelector).textContent = 'Сохранить'
+          });
       }
   },
     () => { editFormValidator.resetValidation() }
@@ -121,6 +130,9 @@ const addFormPopup = new PopupWithForm (
         .catch(err => {
           console.log(err);
         })
+        .finally(() => {
+          document.querySelector('.popup_add').querySelector(config.submitButtonSelector).textContent = 'Создать'
+        });
     }
   },
   () => { addFormValidator.resetValidation() }
@@ -136,7 +148,10 @@ const editAvatarPopup = new PopupWithForm (
         .then(res => {
           document.querySelector('.profile__avatar').src = res.avatar;
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
+        .finally(() => {
+          document.querySelector('.popup_edit-avatar').querySelector(config.submitButtonSelector).textContent = 'Сохранить'
+        });
     },
   },
   () => { editAvatarFormValidator.resetValidation() }

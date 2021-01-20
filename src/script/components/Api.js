@@ -1,17 +1,14 @@
 import UserInfo from "./UserInfo";
 
 export default class Api {
-  constructor(baseUrl, authorization) {
+  constructor({baseUrl, headers}) {
     this._baseUrl = baseUrl;
-    this._authorization = authorization;
+    this._headers = headers;
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-     headers: {
-      authorization: this._authorization,
-      'Content-Type': 'application/json'
-      }
+     headers: this._headers
     })
       .then((res) => {
         if (res.ok) {
@@ -24,10 +21,7 @@ export default class Api {
   addNewCard(name, link) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name,
         link
@@ -44,13 +38,7 @@ export default class Api {
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
- 
-      })
+      headers: this._headers
     })
     .then((res) => {
       if (res.ok) {
@@ -63,13 +51,7 @@ export default class Api {
   likeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       method: 'PUT',
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        
-      })
+      headers: this._headers
     })
     .then((res) => {
       if (res.ok) {
@@ -82,13 +64,7 @@ export default class Api {
   deleteLikeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       method: 'DELETE',
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
- 
-      })
+      headers: this._headers
     })
     .then((res) => {
       if (res.ok) {
@@ -100,10 +76,7 @@ export default class Api {
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': 'application/json'
-        }
+      headers: this._headers
     })
       .then((res) => {
         if (res.ok) {
@@ -116,10 +89,7 @@ export default class Api {
   editUserInfo([name, about]) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name,
         about
@@ -133,10 +103,7 @@ export default class Api {
   editAvatar(avatar) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         avatar
       })
