@@ -79,21 +79,6 @@ const api = new Api({
   }
 });
 
-
-Promise.all([
-  api.getUserInfo(),
-  api.getInitialCards()
-])
-  .then(res => {
-    userId = res[0]._id;
-    user.setUserInfo(res[0]);
-    user.setAvatar(res[0].avatar, '.profile__avatar');
-    cardsSection.renderElements(res[1]);
-  }) 
-  .catch(err => {
-    console.log(err);
-  })
-
 const editFormPopup = new PopupWithForm (
   {
     popupSelector: '.popup_edit',
@@ -113,8 +98,6 @@ const editFormPopup = new PopupWithForm (
   },
     () => { editFormValidator.resetValidation() }
 );
-
-editFormPopup.setEventListeners();
 
 const addFormPopup = new PopupWithForm (
   {
@@ -141,8 +124,6 @@ const addFormPopup = new PopupWithForm (
   () => { addFormValidator.resetValidation() }
 );
 
-addFormPopup.setEventListeners();
-
 const editAvatarPopup = new PopupWithForm (
   {
     popupSelector: '.popup_edit-avatar',
@@ -159,6 +140,26 @@ const editAvatarPopup = new PopupWithForm (
   },
   () => { editAvatarFormValidator.resetValidation() }
 );
+
+
+Promise.all([
+  api.getUserInfo(),
+  api.getInitialCards()
+])
+  .then(res => {
+    userId = res[0]._id;
+    user.setUserInfo(res[0]);
+    user.setAvatar(res[0].avatar, '.profile__avatar');
+    cardsSection.renderElements(res[1]);
+  }) 
+  .catch(err => {
+    console.log(err);
+  })
+
+
+editFormPopup.setEventListeners();
+
+addFormPopup.setEventListeners();
 
 editAvatarPopup.setEventListeners();
 
