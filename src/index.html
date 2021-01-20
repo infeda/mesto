@@ -14,7 +14,12 @@
     </header>
     <main class="content">
       <div class="profile">
-        <img class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>" alt="профиль-аватар">
+        <div class="profile__avatar-container">
+          <img class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>" alt="профиль-аватар">
+          <div class="profile__avatar-overlay">
+            <img class="provile__avatar-edit" src="<%=require('./images/edit-avatar.png')%>">
+          </div>
+        </div>
         <div class="profile__info">
           <div class="profile__heading-line">
             <h1 class="profile__header"></h1>

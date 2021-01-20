@@ -130,5 +130,19 @@ export default class Api {
       })
   }
 
-
+  editAvatar(avatar) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._authorization,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        avatar
+      })
+    })
+      .then(res => {
+        return res.json();
+      })
+  }
 }

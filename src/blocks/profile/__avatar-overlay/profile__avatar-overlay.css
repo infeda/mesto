@@ -1,0 +1,7 @@
+.profile__avatar-overlay {
+    position: absolute;
+    top: calc(50% - 12px);
+    left: calc(50% - 12px);
+    opacity: 0;
+    transition: 0.3s opacity;
+  }
