@@ -13,15 +13,17 @@ export default class PopupWithForm extends Popup {
       return Array.from(this._popup.querySelectorAll('.popup-container__form-item')).map(elem => elem.value);
   }
 
-  _renderLoading(isLoading) {
+  renderLoading(isLoading) {
     if (isLoading) {
       this._submitButton.textContent = 'Сохранение...';
+    } else {
+      this._submitButton.textContent = 'Сохранить';
     }
   }
 
   setEventListeners () {
     this._popup.addEventListener('submit', () => {
-      this._renderLoading(true);
+      this.renderLoading(true);
       this._submitForm(this._getInputValues());
       this.close();
     });

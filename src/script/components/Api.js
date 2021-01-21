@@ -96,7 +96,10 @@ export default class Api {
       })
     })
       .then(res => {
-        return res.json();
+        if (res.ok) {
+          return res.json();
+          }
+          return Promise.reject(`Что-то пошло не так: ${res.status}`);
       })
   }
 
@@ -109,7 +112,10 @@ export default class Api {
       })
     })
       .then(res => {
-        return res.json();
+        if (res.ok) {
+          return res.json();
+          }
+          return Promise.reject(`Что-то пошло не так: ${res.status}`);
       })
   }
 }

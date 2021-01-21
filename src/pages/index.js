@@ -20,7 +20,7 @@ addFormValidator.enableValidation();
 const editAvatarFormValidator = new FormValidator(config, editAvatarFormElement);
 editAvatarFormValidator.enableValidation();
 
-const user = new UserInfo('.profile__header', '.profile__subheader');
+const user = new UserInfo('.profile__header', '.profile__subheader', '.profile__avatar');
 
 const popupWithImage = new PopupWithImage('.popup_image');
 popupWithImage.setEventListeners();
@@ -92,7 +92,7 @@ const editFormPopup = new PopupWithForm (
             console.log(err);
           })
           .finally(() => {
-            document.querySelector('.popup_edit').querySelector(config.submitButtonSelector).textContent = 'Сохранить'
+            editFormPopup.renderLoading(false);
           });
       }
   },
@@ -117,7 +117,7 @@ const addFormPopup = new PopupWithForm (
           console.log(err);
         })
         .finally(() => {
-          document.querySelector('.popup_add').querySelector(config.submitButtonSelector).textContent = 'Создать'
+          addFormPopup.renderLoading(false);
         });
     }
   },
@@ -130,11 +130,11 @@ const editAvatarPopup = new PopupWithForm (
     submitForm: (avatarLink) => {
       api.editAvatar(avatarLink[0])
         .then(res => {
-          document.querySelector('.profile__avatar').src = res.avatar;
+          user.setUserInfo(res);
         })
         .catch(err => console.log(err))
         .finally(() => {
-          document.querySelector('.popup_edit-avatar').querySelector(config.submitButtonSelector).textContent = 'Сохранить'
+          editAvatarPopup.renderLoading(false);
         });
     },
   },
@@ -146,11 +146,10 @@ Promise.all([
   api.getUserInfo(),
   api.getInitialCards()
 ])
-  .then(res => {
-    userId = res[0]._id;
-    user.setUserInfo(res[0]);
-    user.setAvatar(res[0].avatar, '.profile__avatar');
-    cardsSection.renderElements(res[1]);
+  .then(([userInfo, cards]) => {
+    userId = userInfo._id;
+    user.setUserInfo(userInfo);
+    cardsSection.renderElements(cards);
   }) 
   .catch(err => {
     console.log(err);
