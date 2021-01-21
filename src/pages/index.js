@@ -96,7 +96,8 @@ const editFormPopup = new PopupWithForm (
           });
       }
   },
-    () => { editFormValidator.resetValidation() }
+    () => { editFormValidator.resetValidation() },
+    'Сохранить'
 );
 
 const addFormPopup = new PopupWithForm (
@@ -121,7 +122,8 @@ const addFormPopup = new PopupWithForm (
         });
     }
   },
-  () => { addFormValidator.resetValidation() }
+  () => { addFormValidator.resetValidation() },
+  'Создать'
 );
 
 const editAvatarPopup = new PopupWithForm (
@@ -138,7 +140,8 @@ const editAvatarPopup = new PopupWithForm (
         });
     },
   },
-  () => { editAvatarFormValidator.resetValidation() }
+  () => { editAvatarFormValidator.resetValidation() },
+  'Сохранить'
 );
 
 
