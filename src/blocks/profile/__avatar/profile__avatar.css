@@ -7,9 +7,3 @@
   object-position: center;
   transition: 0.3s opacity;
 }
-
-@media (max-width: 730px) {
-  .profile__avatar {
-    margin: 38px auto 0;
-  }
-}
